@@ -1,11 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { environment } from '../../environments';
 import { useSelector } from 'react-redux';
 
-const Home = () => {
+const HomeScreen = () => {
   const state = useSelector(state => state);
-  console.log({ environment, state });
   return (
     <View style={styles.container}>
       <Text>Open up Home.js to start working on your Home!</Text>
@@ -22,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default HomeScreen;
