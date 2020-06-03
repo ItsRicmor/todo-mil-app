@@ -25,6 +25,8 @@
     "@types/react-native-snap-carousel": "^3.8.1",
     "axios": "^0.19.2",
     "expo": "^37.0.0",
+    "expo-font": "^8.1.1",
+    "native-base": "^2.13.12",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
