@@ -13,7 +13,7 @@ const LoginScreen = props => {
       <View style={styles.form}>
         <InputText placeholder="Email" name="email" />
         <InputText placeholder="Contraseña" name="password" />
-        <Button label="Ingresar" onPress={() => navigation.navigate(RouteEnum.Home)} />
+        <Button color="cyan" label="Ingresar" onPress={() => navigation.navigate(RouteEnum.Home)} />
         <Text style={styles.text} onPress={() => navigation.navigate(RouteEnum.Register)}>
           Registrarse
         </Text>
@@ -31,11 +31,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffff',
     alignItems: 'center',
     justifyContent: 'space-between',
+    fontWeight: 'bold',
   },
   form: {
     flex: 8,
     justifyContent: 'center',
     width: '80%',
+    fontWeight: 'bold',
   },
   tittle: {
     textAlign: 'center',
@@ -49,6 +51,7 @@ const styles = StyleSheet.create({
     color: '#5C45EE',
     paddingVertical: 4,
     marginTop: 2,
+    fontWeight: 'bold',
   },
 });
 

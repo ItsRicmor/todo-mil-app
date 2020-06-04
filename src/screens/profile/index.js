@@ -6,24 +6,17 @@ export default class Profile extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}></View>
-        <Image
-          style={styles.avatar}
-          source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }}
-        />
+        <Image style={styles.avatar} source={require('../../../assets/usuario.png')} />
         <View style={styles.body}>
           <View style={styles.bodyContent}>
-            <Text style={styles.name}>John Doe</Text>
-            <Text style={styles.info}>UX Designer / Mobile developer</Text>
-            <Text style={styles.description}>
-              Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis,
-              omittam deseruisse consequuntur ius an,
-            </Text>
+            <Text style={styles.name}>Usuario</Text>
+            <Text style={styles.info}>Este es su perfil de usuario</Text>
 
             <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Opcion 1</Text>
+              <Text>Pedidos</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Opcion 2</Text>
+              <Text>Desconectarse</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -34,7 +27,7 @@ export default class Profile extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#00BFFF',
+    backgroundColor: 'cyan',
     height: 200,
   },
   avatar: {
@@ -68,7 +61,7 @@ const styles = StyleSheet.create({
   },
   info: {
     fontSize: 16,
-    color: '#00BFFF',
+    color: 'black',
     marginTop: 10,
   },
   description: {
@@ -86,6 +79,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 250,
     borderRadius: 30,
-    backgroundColor: '#00BFFF',
+    backgroundColor: 'cyan',
   },
 });

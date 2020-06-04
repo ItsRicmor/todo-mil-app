@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react/display-name */
 import React from 'react';
 import { Button, Text } from 'native-base';
@@ -8,23 +10,29 @@ import LoginScreen from '../screens/login-page';
 import ResetPasswordScreen from '../screens/reset-password-page';
 import RegisterScreen from '../screens/register-page';
 import Profile from '../screens/profile';
+import { useNavigation } from '@react-navigation/native';
 
 const { Navigator, Screen } = createStackNavigator();
 
 const AppNavigator = () => {
   return (
-    <Navigator initialRouteName={RouteEnum.Home}>
+    <Navigator initialRouteName={RouteEnum.Login}>
       <Screen
         name={RouteEnum.Home}
         component={HomeScreen}
-        options={{
-          title: 'Todo Mil',
+        options={({ navigation }) => ({
+          Title: 'Todo Mil',
           headerRight: () => (
-            <Button onPress={() => {}} small primary>
-              <Text>Login</Text>
+            <Button
+              onPress={() => navigation.navigate(RouteEnum.Profile)}
+              style={{ marginRight: 10 }}
+              small
+              light
+            >
+              <Text>Profile</Text>
             </Button>
           ),
-        }}
+        })}
       />
       <Screen name={RouteEnum.Login} component={LoginScreen} options={{ title: 'Todo Mil' }} />
       <Screen
