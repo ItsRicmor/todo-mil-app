@@ -1,4 +1,8 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/camelcase */
+import React, { useEffect } from 'react';
+import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
+import { AppLoading } from 'expo';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import rootStore from './src/stores/rootStore';
@@ -8,6 +12,20 @@ const initialState = {};
 const store = rootStore(initialState);
 
 const App = () => {
+  useEffect(() => {
+    const asyncFonts = async () => {
+      await Font.loadAsync({
+        Roboto: require('native-base/Fonts/Roboto.ttf'),
+        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+        ...Ionicons.font,
+      });
+      setIsReady(true);
+    };
+    asyncFonts();
+  }, []);
+  if (!isReady) {
+    return <AppLoading />;
+  }
   return (
     <Provider store={store}>
       <NavigationContainer>
