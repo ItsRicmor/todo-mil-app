@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import { View, SafeAreaView, Image } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import { Card, CardItem, Text, Left, Body } from 'native-base';
 
 export default class MyCarousel extends Component {
   state = {
@@ -28,21 +29,24 @@ export default class MyCarousel extends Component {
       },
     ],
   };
+
   _renderItem({ item, index }) {
     return (
-      <View
-        style={{
-          backgroundColor: 'floralwhite',
-          borderRadius: 5,
-          height: 320,
-          padding: 50,
-          marginLeft: 25,
-          marginRight: 25,
-        }}
-      >
-        <Text style={{ fontSize: 30 }}>{item.title}</Text>
-        <Text>{item.text}</Text>
-      </View>
+      <Card>
+        <CardItem>
+          <Left>
+            <Body>
+              <Text>{item.title} </Text>
+            </Body>
+          </Left>
+        </CardItem>
+        <CardItem cardBody>
+          <Image
+            source={require('../../../assets/comida.png')}
+            style={{ flex: 1, resizeMode: 'contain', width: null, height: 200 }}
+          />
+        </CardItem>
+      </Card>
     );
   }
 
