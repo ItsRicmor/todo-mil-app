@@ -1,15 +1,15 @@
 import React from 'react';
 import { Text, StyleSheet, View, Linking } from 'react-native';
-import Button from './components/button';
+import Button from './components/Button';
 import InputText from './components/InputText';
 
-const ResetPassword = ({ navigation }) => {
+const ResetPasswordScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.tittle}>Logo</Text>
+      <Text style={styles.tittle}>Restablecer Contraseña</Text>
       <View style={styles.form}>
         <InputText placeholder="Email" name="email" />
-        <Button label="Recuperar" />
+        <Button label="Restablecer" />
       </View>
     </View>
   );
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ResetPassword;
+export default ResetPasswordScreen;

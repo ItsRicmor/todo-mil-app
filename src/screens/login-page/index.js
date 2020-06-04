@@ -6,15 +6,17 @@ import InputText from './components/InputText';
 const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.tittle}>Logo</Text>
+      <Text style={styles.tittle}>Login</Text>
       <View style={styles.form}>
         <InputText placeholder="Email" name="email" />
         <InputText placeholder="Contraseña" name="password" />
         <Button label="Ingresar" />
-        <Text style={styles.text} onPress={() => navigation.navigate('APP_HOME')}>
+        <Text style={styles.text} onPress={() => navigation.navigate('APP_REGISTER')}>
           Registrarse
         </Text>
-        <Text style={styles.text}>¿Olvidaste Contraseña?</Text>
+        <Text style={styles.text} onPress={() => navigation.navigate('APP_RESET')}>
+          ¿Olvidaste Contraseña?
+        </Text>
       </View>
     </View>
   );
