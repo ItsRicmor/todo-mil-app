@@ -3,6 +3,7 @@ enum RouteEnum {
   Login = 'APP_LOGIN',
   Reset = 'APP_RESET',
   Register = 'APP_REGISTER',
+  Profile = 'APP_PROFILE',
 }
 
 export default RouteEnum;
