@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView, Image } from 'react-native';
+import { View, SafeAreaView, Image, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Card, CardItem, Text, Left, Body, Right, Button, Icon } from 'native-base';
 
@@ -63,11 +63,11 @@ export default class MyCarousel extends Component {
       <SafeAreaView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 50 }}>
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
           <Carousel
-            layout={'default'}
+            layout="default"
             ref={ref => (this.carousel = ref)}
             data={this.state.carouselItems}
-            sliderWidth={300}
-            itemWidth={300}
+            sliderWidth={Dimensions.get('window').width - 10}
+            itemWidth={Dimensions.get('window').width - 100}
             renderItem={this._renderItem}
             onSnapToItem={index => this.setState({ activeIndex: index })}
           />
