@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import React from 'react';
-import { Button } from 'native-base';
+import { Button, Text } from 'native-base';
 import { createStackNavigator } from '@react-navigation/stack';
 import RouteEnum from '../constants/RouteEnum';
 import HomeScreen from '../screens/home-screen';
@@ -19,7 +19,11 @@ const AppNavigator = () => {
         component={HomeScreen}
         options={{
           title: 'Todo Mil',
-          headerRight: () => <Button onPress={() => {}} title="Info" color="#fff" />,
+          headerRight: () => (
+            <Button onPress={() => {}} small primary>
+              <Text>Login</Text>
+            </Button>
+          ),
         }}
       />
       <Screen name={RouteEnum.Login} component={LoginScreen} options={{ title: 'Todo Mil' }} />
