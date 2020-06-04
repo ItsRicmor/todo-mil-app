@@ -2,19 +2,22 @@ import React from 'react';
 import { Text, StyleSheet, View, Linking } from 'react-native';
 import Button from './components/button';
 import InputText from './components/InputText';
+import RouteEnum from '../../constants/RouteEnum';
+import { useNavigation } from '@react-navigation/native';
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = props => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.tittle}>Login</Text>
       <View style={styles.form}>
         <InputText placeholder="Email" name="email" />
         <InputText placeholder="Contraseña" name="password" />
-        <Button label="Ingresar" />
-        <Text style={styles.text} onPress={() => navigation.navigate('APP_REGISTER')}>
+        <Button label="Ingresar" onPress={() => navigation.navigate(RouteEnum.Home)} />
+        <Text style={styles.text} onPress={() => navigation.navigate(RouteEnum.Register)}>
           Registrarse
         </Text>
-        <Text style={styles.text} onPress={() => navigation.navigate('APP_RESET')}>
+        <Text style={styles.text} onPress={() => navigation.navigate(RouteEnum.Reset)}>
           ¿Olvidaste Contraseña?
         </Text>
       </View>

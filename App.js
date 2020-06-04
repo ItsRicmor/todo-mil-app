@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { AppLoading } from 'expo';
@@ -12,6 +12,7 @@ const initialState = {};
 const store = rootStore(initialState);
 
 const App = () => {
+  const [isReady, setIsReady] = useState(false);
   useEffect(() => {
     const asyncFonts = async () => {
       await Font.loadAsync({
