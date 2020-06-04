@@ -10,6 +10,7 @@ import LoginScreen from '../screens/login-page';
 import ResetPasswordScreen from '../screens/reset-password-page';
 import RegisterScreen from '../screens/register-page';
 import Profile from '../screens/profile';
+import Requests from '../screens/requests';
 import { useNavigation } from '@react-navigation/native';
 
 const { Navigator, Screen } = createStackNavigator();
@@ -46,6 +47,7 @@ const AppNavigator = () => {
         options={{ title: 'Todo Mil' }}
       />
       <Screen name={RouteEnum.Profile} component={Profile} options={{ title: 'Perfil' }} />
+      <Screen name={RouteEnum.Requests} component={Requests} options={{ title: 'Requests' }} />
     </Navigator>
   );
 };

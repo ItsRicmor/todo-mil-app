@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import RouteEnum from '../../constants/RouteEnum';
 
-export default class Profile extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}></View>
-        <Image style={styles.avatar} source={require('../../../assets/usuario.png')} />
-        <View style={styles.body}>
-          <View style={styles.bodyContent}>
-            <Text style={styles.name}>Usuario</Text>
-            <Text style={styles.info}>Este es su perfil de usuario</Text>
+const Profile = () => {
+  const navigation = useNavigation();
 
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Pedidos</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Desconectarse</Text>
-            </TouchableOpacity>
-          </View>
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}></View>
+      <Image style={styles.avatar} source={require('../../../assets/usuario.png')} />
+      <View style={styles.body}>
+        <View style={styles.bodyContent}>
+          <Text style={styles.name}>Usuario</Text>
+          <Text style={styles.info}>Este es su perfil de usuario</Text>
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate(RouteEnum.Requests)}
+            style={styles.buttonContainer}
+          >
+            <Text>Pedidos</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer}>
+            <Text>Desconectarse</Text>
+          </TouchableOpacity>
         </View>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -82,3 +87,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'cyan',
   },
 });
+export default Profile;

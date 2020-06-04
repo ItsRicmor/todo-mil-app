@@ -4,6 +4,7 @@ enum RouteEnum {
   Reset = 'APP_RESET',
   Register = 'APP_REGISTER',
   Profile = 'APP_PROFILE',
+  Requests = 'APP_REQUESTS',
 }
 
 export default RouteEnum;
