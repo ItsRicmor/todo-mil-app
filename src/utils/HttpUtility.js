@@ -76,9 +76,12 @@ export default class HttpUtility {
 
       const [axiosResponse] = await Promise.all([axios(axiosRequestConfig), HttpUtility._delay()]);
 
-      const { status, data, request } = axiosResponse;
-
-      if (data.success === false) {
+      const {
+        status,
+        data: { data, ok },
+        request,
+      } = axiosResponse;
+      if (ok === false) {
         return HttpUtility._fillInErrorWithDefaults(
           {
             status,
@@ -92,7 +95,7 @@ export default class HttpUtility {
       }
 
       return {
-        ...axiosResponse,
+        data,
       };
     } catch (error) {
       if (error.response) {
@@ -141,13 +144,39 @@ export default class HttpUtility {
   }
 
   static _fillInErrorWithDefaults(error, request) {
+    console.log(error);
+    const {
+      raw: {
+        data: { data },
+      },
+      status,
+    } = error;
     const model = new HttpErrorResponseModel();
-
-    model.status = error.status || 0;
-    model.message = error.message || 'Error requesting data';
-    model.errors = error.errors.length ? error.errors : ['Error requesting data'];
-    model.url = error.url || request.url;
-    model.raw = error.raw;
+    if (data) {
+      const {
+        raw: {
+          config: { url },
+        },
+      } = error;
+      const { subErrors, message } = data;
+      model.status = status || 0;
+      model.message = message || 'Error requesting data';
+      model.errors = subErrors?.length ? error.subErrors : ['Error requesting data'];
+      model.url = url || request.url;
+      model.raw = data;
+    } else {
+      const {
+        raw: {
+          data: { message = '' },
+          config: { url },
+        },
+      } = error;
+      model.status = error.status || 0;
+      model.message = message || 'Error requesting data';
+      model.errors = error.errors.length ? error.errors : ['Error requesting data'];
+      model.url = url || request.url;
+      model.raw = error.raw.data.apierror;
+    }
 
     // Remove anything with undefined or empty strings.
     model.errors = model.errors.filter(Boolean);
