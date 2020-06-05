@@ -1,26 +1,24 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 
-const Finished = () => {
+const InProgress = () => {
   state = {
     names: [
       {
-        id: 6,
-        name: 'Jugo verde',
-        descripcion: 'con brocoli',
-        precio: '1500',
+        id: 3,
+        name: 'cena',
+        description: 'a la barbacoa',
+        price: '3000',
       },
       {
-        id: 7,
-        name: 'tostadas',
-        descripcion: 'con tortillas caceras',
-        precio: '2000',
+        id: 4,
+        name: 'helado',
+        description: 'con chispas de chocolate',
+        price: '1000',
       },
     ],
   };
-  alertItemName = item => {
-    alert(item.name);
-  };
+  const Tab = createMaterialTopTabNavigator();
   return (
     <ScrollView>
       <View>
@@ -31,15 +29,15 @@ const Finished = () => {
             onPress={() => this.alertItemName(item)}
           >
             <Text style={[styles.text, styles.title]}>{item.name}</Text>
-            <Text style={styles.text}>{item.descripcion}</Text>
-            <Text style={styles.text}>{item.precio}</Text>
+            <Text style={styles.text}>{item.description}</Text>
+            <Text style={styles.text}>{item.price}</Text>
           </TouchableOpacity>
         ))}
       </View>
     </ScrollView>
   );
 };
-export default Finished;
+export default InProgress;
 
 const styles = StyleSheet.create({
   container: {

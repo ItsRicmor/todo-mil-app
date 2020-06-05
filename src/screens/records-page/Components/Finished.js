@@ -1,34 +1,20 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 
-const Delivered = () => {
+const Finished = () => {
   state = {
     names: [
       {
-        id: 1,
-        name: 'gallo pinto',
-        descripcion: 'con huevos',
-        precio: '1500',
+        id: 6,
+        name: 'Jugo verde',
+        description: 'con brocoli',
+        price: '1500',
       },
-      {
-        id: 2,
-        name: 'bistec',
-        descripcion: 'con carne asada',
-        precio: '2500',
-      },
-
-      {
-        id: 5,
-        name: 'galletas',
-        descripcion: 'con chispas de chocolate',
-        precio: '1000',
-      },
-
       {
         id: 7,
         name: 'tostadas',
-        descripcion: 'con tortillas caceras',
-        precio: '2000',
+        description: 'con tortillas caceras',
+        price: '2000',
       },
     ],
   };
@@ -45,16 +31,15 @@ const Delivered = () => {
             onPress={() => this.alertItemName(item)}
           >
             <Text style={[styles.text, styles.title]}>{item.name}</Text>
-            <Text style={styles.text}>{item.descripcion}</Text>
-            <Text style={styles.text}>{item.precio}</Text>
+            <Text style={styles.text}>{item.description}</Text>
+            <Text style={styles.text}>{item.price}</Text>
           </TouchableOpacity>
         ))}
       </View>
     </ScrollView>
   );
 };
-
-export default Delivered;
+export default Finished;
 
 const styles = StyleSheet.create({
   container: {

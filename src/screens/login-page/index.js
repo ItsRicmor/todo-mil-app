@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, StyleSheet, View, Linking } from 'react-native';
-import Button from './components/button';
+import { Text, StyleSheet, View } from 'react-native';
+import Button from './components/Button';
 import InputText from './components/InputText';
 import RouteEnum from '../../constants/RouteEnum';
 import { useNavigation } from '@react-navigation/native';

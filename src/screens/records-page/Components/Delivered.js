@@ -1,24 +1,40 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 
-const InProgress = () => {
+const Delivered = () => {
   state = {
     names: [
       {
-        id: 3,
-        name: 'cena',
-        descripcion: 'a la barbacoa',
-        precio: '3000',
+        id: 1,
+        name: 'gallo pinto',
+        description: 'con huevos',
+        price: '1500',
       },
       {
-        id: 4,
-        name: 'helado',
-        descripcion: 'con chispas de chocolate',
-        precio: '1000',
+        id: 2,
+        name: 'bistec',
+        description: 'con carne asada',
+        price: '2500',
+      },
+
+      {
+        id: 5,
+        name: 'galletas',
+        description: 'con chispas de chocolate',
+        price: '1000',
+      },
+
+      {
+        id: 7,
+        name: 'tostadas',
+        description: 'con tortillas caceras',
+        price: '2000',
       },
     ],
   };
-  const Tab = createMaterialTopTabNavigator();
+  alertItemName = item => {
+    alert(item.name);
+  };
   return (
     <ScrollView>
       <View>
@@ -29,15 +45,16 @@ const InProgress = () => {
             onPress={() => this.alertItemName(item)}
           >
             <Text style={[styles.text, styles.title]}>{item.name}</Text>
-            <Text style={styles.text}>{item.descripcion}</Text>
-            <Text style={styles.text}>{item.precio}</Text>
+            <Text style={styles.text}>{item.description}</Text>
+            <Text style={styles.text}>{item.price}</Text>
           </TouchableOpacity>
         ))}
       </View>
     </ScrollView>
   );
 };
-export default InProgress;
+
+export default Delivered;
 
 const styles = StyleSheet.create({
   container: {

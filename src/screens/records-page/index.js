@@ -5,7 +5,7 @@ import InProgress from './Components/InProcess';
 import Finished from './Components/Finished';
 
 const Tab = createMaterialTopTabNavigator();
-const List = () => {
+const Records = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="En Proceso" component={InProgress} />
@@ -14,4 +14,4 @@ const List = () => {
     </Tab.Navigator>
   );
 };
-export default List;
+export default Records;

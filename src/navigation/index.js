@@ -9,8 +9,8 @@ import HomeScreen from '../screens/home-screen';
 import LoginScreen from '../screens/login-page';
 import ResetPasswordScreen from '../screens/reset-password-page';
 import RegisterScreen from '../screens/register-page';
-import Profile from '../screens/profile';
-import Requests from '../screens/requests';
+import Profile from '../screens/profile-page';
+import Records from '../screens/records-page';
 import { useNavigation } from '@react-navigation/native';
 
 const { Navigator, Screen } = createStackNavigator();
@@ -47,7 +47,7 @@ const AppNavigator = () => {
         options={{ title: 'Todo Mil' }}
       />
       <Screen name={RouteEnum.Profile} component={Profile} options={{ title: 'Perfil' }} />
-      <Screen name={RouteEnum.Requests} component={Requests} options={{ title: 'Requests' }} />
+      <Screen name={RouteEnum.Records} component={Records} options={{ title: 'Requests' }} />
     </Navigator>
   );
 };
