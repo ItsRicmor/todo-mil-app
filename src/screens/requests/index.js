@@ -8,9 +8,9 @@ const Tab = createMaterialTopTabNavigator();
 const List = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Entregado" component={Delivered} />
       <Tab.Screen name="En Proceso" component={InProgress} />
       <Tab.Screen name="Finalizado" component={Finished} />
+      <Tab.Screen name="Entregado" component={Delivered} />
     </Tab.Navigator>
   );
 };
