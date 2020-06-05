@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
 
 import { useSelector, useDispatch } from 'react-redux';
+import AuthService from '../../services/AuthService';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -23,6 +24,7 @@ const LoginScreen = () => {
   };
 
   useEffect(() => {
+    AuthService.logout();
     if (authenticated) {
       navigation.navigate(RouteEnum.Home);
     }
@@ -48,6 +50,7 @@ const LoginScreen = () => {
         />
         <InputText
           value={password}
+          secureTextEntry={true}
           onChangeText={handleChange('password')}
           placeholder="Contraseña"
         />

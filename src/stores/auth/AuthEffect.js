@@ -15,4 +15,13 @@ export default class AuthEffect {
     }
     return response;
   };
+
+  static requestRegister = async user => {
+    const endpoint = environment.auth.register;
+    const response = await EffectUtility.postToModel(AuthModel, endpoint, user);
+    if (response.token) {
+      await AuthService.setToken(response.token);
+    }
+    return response;
+  };
 }

@@ -20,7 +20,28 @@ export default class AuthAction {
         dispatch(this.changeAuth({ authenticated: true, ...rest }));
       } else {
         dispatch(this.changeAuth({ authenticated: false }));
-        AuthService.logout();
+        await AuthService.logout();
+      }
+    };
+  }
+
+  static REQUEST_AUTH_REGISTER = 'AuthAction.REQUEST_AUTH_REGISTER';
+  static REQUEST_AUTH_REGISTER_FINISHED = 'AuthAction.REQUEST_AUTH_REGISTER_FINISHED';
+
+  static requestRegister(user) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        AuthAction.REQUEST_AUTH_REGISTER,
+        AuthEffect.requestRegister,
+        user,
+      );
+      if (await AuthService.loggedIn()) {
+        const { token, ...rest } = (await AuthService.getProfile()).user_data;
+        dispatch(this.changeAuth({ authenticated: true, ...rest }));
+      } else {
+        dispatch(this.changeAuth({ authenticated: false }));
+        await AuthService.logout();
       }
     };
   }

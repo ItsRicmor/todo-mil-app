@@ -1,5 +1,6 @@
 import axios from 'axios';
 import HttpErrorResponseModel from '../models/HttpErrorResponseModel';
+import AuthService from '../services/AuthService';
 
 const RequestMethod = {
   Get: 'GET',
@@ -51,31 +52,35 @@ export default class HttpUtility {
     );
   }
 
-  static async delete(endpoint) {
-    return HttpUtility._request({
-      url: endpoint,
-      method: RequestMethod.Delete,
-    });
-  }
-
   static async _request(restRequest, config) {
     if (!Boolean(restRequest.url)) {
       console.error(`Received ${restRequest.url} which is invalid for a endpoint url`);
     }
 
     try {
-      const axiosRequestConfig = {
+      let axiosRequestConfig = {
         ...config,
         method: restRequest.method,
         url: restRequest.url,
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
           ...config?.headers,
         },
       };
 
-      const [axiosResponse] = await Promise.all([axios(axiosRequestConfig), HttpUtility._delay()]);
+      if (await AuthService.loggedIn()) {
+        const token = await AuthService.getToken();
+        axiosRequestConfig = {
+          ...axiosRequestConfig,
+          headers: {
+            ...axiosRequestConfig.headers,
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      }
 
+      const [axiosResponse] = await Promise.all([axios(axiosRequestConfig), HttpUtility._delay()]);
+      console.log(axiosResponse);
       const {
         status,
         data: { data, ok },
@@ -85,10 +90,10 @@ export default class HttpUtility {
         return HttpUtility._fillInErrorWithDefaults(
           {
             status,
-            message: data.errors.join(' - '),
-            errors: data.errors,
+            message: data.message,
+            errors: data.subErrors,
             url: request ? request.responseURL : restRequest.url,
-            raw: axiosResponse,
+            raw: data,
           },
           restRequest,
         );
