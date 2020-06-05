@@ -5,6 +5,9 @@ enum RouteEnum {
   Register = 'APP_REGISTER',
   Profile = 'APP_PROFILE',
   Requests = 'APP_REQUESTS',
+  Delivered = 'APP_DELIVERED',
+  InProcess = 'APP_INPROCESS',
+  Finished = 'APP_FINISHED',
 }
 
 export default RouteEnum;
