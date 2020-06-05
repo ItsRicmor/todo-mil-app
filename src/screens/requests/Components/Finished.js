@@ -7,14 +7,12 @@ const Finished = () => {
       {
         id: 6,
         name: 'Jugo verde',
-        estado: 'terminado',
         descripcion: 'con brocoli',
         precio: '1500',
       },
       {
         id: 7,
         name: 'tostadas',
-        estado: 'terminado',
         descripcion: 'con tortillas caceras',
         precio: '2000',
       },
@@ -26,7 +24,7 @@ const Finished = () => {
   return (
     <ScrollView>
       <View>
-        {this.state.names.map((item, index) => (
+        {this.state.names.map(item => (
           <TouchableOpacity
             key={item.id}
             style={styles.container}
@@ -35,7 +33,6 @@ const Finished = () => {
             <Text style={[styles.text, styles.title]}>{item.name}</Text>
             <Text style={styles.text}>{item.descripcion}</Text>
             <Text style={styles.text}>{item.precio}</Text>
-            <Text style={styles.text}>{item.estado}</Text>
           </TouchableOpacity>
         ))}
       </View>

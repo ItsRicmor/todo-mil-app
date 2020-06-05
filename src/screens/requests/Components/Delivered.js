@@ -7,15 +7,12 @@ const Delivered = () => {
       {
         id: 1,
         name: 'gallo pinto',
-        precio: '1500',
         descripcion: 'con huevos',
-        estado: 'recibido',
-        fechaCompra: '',
+        precio: '1500',
       },
       {
         id: 2,
         name: 'bistec',
-        estado: 'recibido',
         descripcion: 'con carne asada',
         precio: '2500',
       },
@@ -23,7 +20,6 @@ const Delivered = () => {
       {
         id: 5,
         name: 'galletas',
-        estado: 'recibido',
         descripcion: 'con chispas de chocolate',
         precio: '1000',
       },
@@ -31,7 +27,6 @@ const Delivered = () => {
       {
         id: 7,
         name: 'tostadas',
-        estado: 'recibido',
         descripcion: 'con tortillas caceras',
         precio: '2000',
       },
@@ -43,7 +38,7 @@ const Delivered = () => {
   return (
     <ScrollView>
       <View>
-        {this.state.names.map((item, index) => (
+        {this.state.names.map(item => (
           <TouchableOpacity
             key={item.id}
             style={styles.container}
@@ -52,7 +47,6 @@ const Delivered = () => {
             <Text style={[styles.text, styles.title]}>{item.name}</Text>
             <Text style={styles.text}>{item.descripcion}</Text>
             <Text style={styles.text}>{item.precio}</Text>
-            <Text style={styles.text}>{item.estado}</Text>
           </TouchableOpacity>
         ))}
       </View>
