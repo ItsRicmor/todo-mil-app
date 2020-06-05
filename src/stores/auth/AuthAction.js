@@ -46,6 +46,20 @@ export default class AuthAction {
     };
   }
 
+  static REQUEST_AUTH_FORGOT_PASSWORD = 'AuthAction.REQUEST_AUTH_FORGOT_PASSWORD';
+  static REQUEST_AUTH_FORGOT_PASSWORD_FINISHED = 'AuthAction.REQUEST_AUTH_FORGOT_PASSWORD_FINISHED';
+
+  static requestForgotPassword(email) {
+    return async (dispatch, getState) => {
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        AuthAction.REQUEST_AUTH_FORGOT_PASSWORD,
+        AuthEffect.requestForgotPassword,
+        email,
+      );
+    };
+  }
+
   static AUTH_AUTHENTICATED = 'AuthAction.AUTH_AUTHENTICATED';
 
   static changeAuth(auth) {
