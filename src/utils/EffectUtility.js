@@ -19,6 +19,10 @@ export default class EffectUtility {
       return response;
     }
 
+    if (!response.data) {
+      return null;
+    }
+
     return !Array.isArray(response.data)
       ? new Model(response.data)
       : response.data.map(json => new Model(json));

@@ -5,6 +5,7 @@ class List extends Component {
   state = {
     names: [
       {
+        id: 1,
         name: 'gallo pinto',
         precio: '1500',
         descripcion: 'con huevos',
@@ -12,42 +13,42 @@ class List extends Component {
         fechaCompra: '',
       },
       {
-        id: 1,
+        id: 2,
         name: 'bistec',
         estado: 'recibido',
         descripcion: 'con carne asada',
         precio: '2500',
       },
       {
-        id: 2,
+        id: 3,
         name: 'cena',
         estado: 'en progreso',
         descripcion: 'a la barbacoa',
         precio: '3000',
       },
       {
-        id: 3,
+        id: 4,
         name: 'helado',
         estado: 'en progreso',
         descripcion: 'con chispas de chocolate',
         precio: '1000',
       },
       {
-        id: 4,
+        id: 5,
         name: 'galletas',
         estado: 'recibido',
         descripcion: 'con chispas de chocolate',
         precio: '1000',
       },
       {
-        id: 5,
+        id: 6,
         name: 'Jugo verde',
         estado: 'terminado',
         descripcion: 'con brocoli',
         precio: '1500',
       },
       {
-        id: 6,
+        id: 7,
         name: 'tostadas',
         estado: 'recibido',
         descripcion: 'con tortillas caceras',
