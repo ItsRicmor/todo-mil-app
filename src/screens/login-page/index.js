@@ -42,16 +42,17 @@ const styles = StyleSheet.create({
   tittle: {
     textAlign: 'center',
     fontSize: 25,
-    marginTop: 100,
+    marginTop: 50,
     fontWeight: 'bold',
   },
   text: {
     fontSize: 13,
     textAlign: 'center',
-    color: '#5C45EE',
+    color: 'black',
     paddingVertical: 4,
     marginTop: 2,
     fontWeight: 'bold',
+    fontSize: 15,
   },
 });
 

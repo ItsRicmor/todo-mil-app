@@ -11,6 +11,7 @@ const style = StyleSheet.create({
     borderColor: '#afa19c',
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: 20,
+    fontSize: 20,
   },
 });
 

@@ -15,16 +15,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#0275d8',
-    marginBottom: 12,
+    marginBottom: 8,
     paddingVertical: 12,
     borderRadius: 4,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'rgba(255,255,255,0.7)',
+    backgroundColor: 'cyan',
   },
   text: {
-    color: '#ffff',
+    color: 'black',
     textAlign: 'center',
     height: 20,
+    fontWeight: 'bold',
   },
 });
 

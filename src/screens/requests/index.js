@@ -7,35 +7,51 @@ class List extends Component {
       {
         name: 'gallo pinto',
         precio: '1500',
-        descripcio: 'delicioso',
+        descripcion: 'con huevos',
+        estado: 'recibido',
+        fechaCompra: '',
       },
       {
         id: 1,
-        name: 'Susan',
+        name: 'bistec',
+        estado: 'recibido',
+        descripcion: 'con carne asada',
+        precio: '2500',
       },
       {
         id: 2,
-        name: 'Robert',
+        name: 'cena',
+        estado: 'en progreso',
+        descripcion: 'a la barbacoa',
+        precio: '3000',
       },
       {
         id: 3,
-        name: 'Mary',
+        name: 'helado',
+        estado: 'en progreso',
+        descripcion: 'con chispas de chocolate',
+        precio: '1000',
       },
       {
         id: 4,
-        name: 'Mary',
+        name: 'galletas',
+        estado: 'recibido',
+        descripcion: 'con chispas de chocolate',
+        precio: '1000',
       },
       {
         id: 5,
-        name: 'Mary',
+        name: 'Jugo verde',
+        estado: 'terminado',
+        descripcion: 'con brocoli',
+        precio: '1500',
       },
       {
         id: 6,
-        name: 'Mary',
-      },
-      {
-        id: 7,
-        name: 'Mary',
+        name: 'tostadas',
+        estado: 'recibido',
+        descripcion: 'con tortillas caceras',
+        precio: '2000',
       },
     ],
   };
@@ -52,7 +68,10 @@ class List extends Component {
               style={styles.container}
               onPress={() => this.alertItemName(item)}
             >
-              <Text style={styles.text}>{item.name}</Text>
+              <Text style={[styles.text, styles.title]}>{item.name}</Text>
+              <Text style={styles.text}>{item.descripcion}</Text>
+              <Text style={styles.text}>{item.precio}</Text>
+              <Text style={styles.text}>{item.estado}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -64,15 +83,25 @@ export default List;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 50,
+    padding: 30,
     marginTop: 10,
     backgroundColor: 'cyan',
     alignItems: 'center',
     marginRight: 50,
     marginLeft: 50,
+    textShadowRadius: 20,
+    borderRadius: 45,
+    borderTopColor: 'black',
+    borderWidth: 1,
   },
   text: {
     color: '#4f603c',
     fontWeight: 'bold',
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 10,
+    textTransform: 'uppercase',
+    borderColor: '#afa19c',
   },
 });

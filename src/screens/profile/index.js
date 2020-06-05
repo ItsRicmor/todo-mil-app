@@ -85,6 +85,8 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 30,
     backgroundColor: 'cyan',
+    fontWeight: 'bold',
+    color: 'black',
   },
 });
 export default Profile;

@@ -21,11 +21,13 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'rgba(255,255,255,0.7)',
+    backgroundColor: 'cyan',
   },
   text: {
-    color: '#ffff',
+    color: 'black',
     textAlign: 'center',
     height: 20,
+    fontWeight: 'bold',
   },
 });
 
