@@ -7,7 +7,6 @@ const InProgress = () => {
       {
         id: 3,
         name: 'cena',
-        estado: 'en progreso',
         descripcion: 'a la barbacoa',
         precio: '3000',
       },
@@ -20,6 +19,7 @@ const InProgress = () => {
       },
     ],
   };
+  const Tab = createMaterialTopTabNavigator();
   return (
     <ScrollView>
       <View>
