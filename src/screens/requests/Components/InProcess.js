@@ -7,14 +7,12 @@ const InProgress = () => {
       {
         id: 3,
         name: 'cena',
-        estado: 'en progreso',
         descripcion: 'a la barbacoa',
         precio: '3000',
       },
       {
         id: 4,
         name: 'helado',
-        estado: 'en progreso',
         descripcion: 'con chispas de chocolate',
         precio: '1000',
       },
@@ -23,7 +21,7 @@ const InProgress = () => {
   return (
     <ScrollView>
       <View>
-        {this.state.names.map((item, index) => (
+        {this.state.names.map(item => (
           <TouchableOpacity
             key={item.id}
             style={styles.container}
@@ -32,7 +30,6 @@ const InProgress = () => {
             <Text style={[styles.text, styles.title]}>{item.name}</Text>
             <Text style={styles.text}>{item.descripcion}</Text>
             <Text style={styles.text}>{item.precio}</Text>
-            <Text style={styles.text}>{item.estado}</Text>
           </TouchableOpacity>
         ))}
       </View>
