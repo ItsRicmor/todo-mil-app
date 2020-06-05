@@ -1,6 +1,6 @@
 import environment from './base';
 
-const baseApi = 'https://jsonplaceholder.typicode.com';
+const baseApi = 'http://10.0.2.2:8080';
 const env = environment(baseApi);
 
 const developmentEnv = {

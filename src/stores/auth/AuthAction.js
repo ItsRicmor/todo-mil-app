@@ -8,21 +8,19 @@ export default class AuthAction {
 
   static requestLogin(username, password) {
     return async (dispatch, getState) => {
-      if (!getState().auth.authenticated) {
-        await ActionUtility.createThunkEffect(
-          dispatch,
-          AuthAction.REQUEST_AUTH,
-          AuthEffect.requestLogin,
-          username,
-          password,
-        );
-        if (AuthService.loggedIn()) {
-          const { token, ...rest } = AuthService.getProfile().user_data;
-          dispatch(this.changeAuth({ authenticated: true, ...rest }));
-        } else {
-          dispatch(this.changeAuth({ authenticated: false }));
-          AuthService.logout();
-        }
+      await ActionUtility.createThunkEffect(
+        dispatch,
+        AuthAction.REQUEST_AUTH,
+        AuthEffect.requestLogin,
+        username,
+        password,
+      );
+      if (await AuthService.loggedIn()) {
+        const { token, ...rest } = (await AuthService.getProfile()).user_data;
+        dispatch(this.changeAuth({ authenticated: true, ...rest }));
+      } else {
+        dispatch(this.changeAuth({ authenticated: false }));
+        AuthService.logout();
       }
     };
   }

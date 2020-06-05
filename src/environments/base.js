@@ -9,7 +9,14 @@ export default function baseEnv(baseApi) {
       baseRoute: '',
     },
     api: {
-      todo: `${baseApi}/todos/:todoId`,
+      orders: `${baseApi}/api/orders/:orderId`,
+      categories: `${baseApi}/api/categories/:categoryId`,
+      menus: `${baseApi}/api/menus/:menuId`,
+      articles: `${baseApi}/api/articles/:id`,
+    },
+    auth: {
+      login: `${baseApi}/auth/login?password=:password&username=:username`,
+      register: `${baseApi}/auth/register`,
     },
     isProduction: true,
     isDevelopment: false,

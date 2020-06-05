@@ -11,11 +11,14 @@ import ResetPasswordScreen from '../screens/reset-password-page';
 import RegisterScreen from '../screens/register-page';
 import Profile from '../screens/profile-page';
 import Records from '../screens/records-page';
-import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 const { Navigator, Screen } = createStackNavigator();
 
 const AppNavigator = () => {
+  const state = useSelector(state => state);
+  console.log('State', state);
+
   return (
     <Navigator initialRouteName={RouteEnum.Login}>
       <Screen

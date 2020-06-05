@@ -1,8 +1,9 @@
+import { AsyncStorage } from 'react-native';
 import decode from 'jwt-decode';
 
 export default class AuthService {
-  static loggedIn = () => {
-    const token = this.getToken();
+  static loggedIn = async () => {
+    const token = await this.getToken();
     return !!token && !this.isTokenExpired(token);
   };
 
@@ -18,22 +19,40 @@ export default class AuthService {
     }
   };
 
-  static setToken = idToken => localStorage.setItem('id_token', idToken);
+  static setToken = async idToken => {
+    try {
+      await AsyncStorage.setItem('id_token', idToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  static getToken = () => localStorage.getItem('id_token');
+  static getToken = async () => {
+    try {
+      return await AsyncStorage.getItem('id_token');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  static logout = () => localStorage.removeItem('id_token');
+  static logout = async () => {
+    try {
+      await AsyncStorage.removeItem('id_token');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  static getProfile = () => decode(this.getToken());
+  static getProfile = async () => decode(await this.getToken());
 
-  static getUserRoles = () => {
-    const { auth } = this.getProfile();
+  static getUserRoles = async () => {
+    const { auth } = await this.getProfile();
     return auth;
   };
 
-  static isAdmin = () => {
+  static isAdmin = async () => {
     if (this.loggedIn()) {
-      const auth = this.getUserRoles();
+      const auth = await this.getUserRoles();
       let authorities = [];
       auth.forEach(({ authority }) => {
         authorities = [...authorities, authority];

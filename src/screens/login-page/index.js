@@ -1,19 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import Button from './components/Button';
 import InputText from './components/InputText';
 import RouteEnum from '../../constants/RouteEnum';
+import AuthAction from '../../stores/auth/AuthAction';
 import { useNavigation } from '@react-navigation/native';
+import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
 
-const LoginScreen = props => {
+import { useSelector, useDispatch } from 'react-redux';
+
+const LoginScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const authenticated = useSelector(state => selectAuthenticated(state));
+  const [state, setState] = useState({ username: '', password: '' });
+
+  const handleChange = name => value => {
+    setState({
+      ...state,
+      [name]: value,
+    });
+  };
+
+  useEffect(() => {
+    if (authenticated) {
+      navigation.navigate(RouteEnum.Home);
+    }
+  }, [navigation, authenticated]);
+
+  const handleSubmit = () => {
+    const { username, password } = state;
+    if (!!username && !!password) {
+      dispatch(AuthAction.requestLogin(username, password));
+    }
+  };
+
+  const { username, password } = state;
+
   return (
     <View style={styles.container}>
       <Text style={styles.tittle}>Login</Text>
       <View style={styles.form}>
-        <InputText placeholder="Email" name="email" />
-        <InputText placeholder="Contraseña" name="password" />
-        <Button color="cyan" label="Ingresar" onPress={() => navigation.navigate(RouteEnum.Home)} />
+        <InputText
+          value={username}
+          onChangeText={handleChange('username')}
+          placeholder="Username"
+        />
+        <InputText
+          value={password}
+          onChangeText={handleChange('password')}
+          placeholder="Contraseña"
+        />
+        <Button color="cyan" label="Ingresar" onPress={handleSubmit} />
         <Text style={styles.text} onPress={() => navigation.navigate(RouteEnum.Register)}>
           Registrarse
         </Text>
