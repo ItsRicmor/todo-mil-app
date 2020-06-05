@@ -4,14 +4,14 @@ import Delivered from './Components/Delivered';
 import InProgress from './Components/InProcess';
 import Finished from './Components/Finished';
 
-const Tab = createMaterialTopTabNavigator();
+const { Navigator, Screen } = createMaterialTopTabNavigator();
 const List = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="En Proceso" component={InProgress} />
-      <Tab.Screen name="Finalizado" component={Finished} />
-      <Tab.Screen name="Entregado" component={Delivered} />
-    </Tab.Navigator>
+    <Navigator>
+      <Screen name="En Proceso" component={InProgress} />
+      <Screen name="Finalizado" component={Finished} />
+      <Screen name="Entregado" component={Delivered} />
+    </Navigator>
   );
 };
 export default List;

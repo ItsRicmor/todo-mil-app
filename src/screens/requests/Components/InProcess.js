@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 
 const InProgress = () => {
-  state = {
+  const state = {
     names: [
       {
         id: 3,
@@ -18,15 +18,14 @@ const InProgress = () => {
       },
     ],
   };
-  const Tab = createMaterialTopTabNavigator();
   return (
     <ScrollView>
       <View>
-        {this.state.names.map(item => (
+        {state.names.map(item => (
           <TouchableOpacity
             key={item.id}
             style={styles.container}
-            onPress={() => this.alertItemName(item)}
+            onPress={() => alertItemName(item)}
           >
             <Text style={[styles.text, styles.title]}>{item.name}</Text>
             <Text style={styles.text}>{item.descripcion}</Text>
