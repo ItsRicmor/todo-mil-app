@@ -17,6 +17,7 @@ export default function baseEnv(baseApi) {
     auth: {
       login: `${baseApi}/auth/login?password=:password&username=:username`,
       register: `${baseApi}/auth/register`,
+      forgot: `${baseApi}/auth/forgot?email=:email`,
     },
     isProduction: true,
     isDevelopment: false,

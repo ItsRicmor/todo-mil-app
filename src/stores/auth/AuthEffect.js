@@ -24,4 +24,9 @@ export default class AuthEffect {
     }
     return response;
   };
+
+  static requestForgotPassword = async email => {
+    const endpoint = environment.auth.forgot.replace(':email', email);
+    return await EffectUtility.postToModel(AuthModel, endpoint);
+  };
 }

@@ -8,8 +8,7 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/todoMil.png",
-      "resizeMode": "contain",
-      "backgroundColor": "cyan"
+      "resizeMode": "contain"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
