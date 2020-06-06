@@ -8,6 +8,7 @@ import AuthAction from '../../stores/auth/AuthAction';
 import { useNavigation } from '@react-navigation/native';
 import RouteEnum from '../../constants/RouteEnum';
 import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
+import Toasts from '../components/Toasts';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
@@ -79,7 +80,7 @@ const RegisterScreen = () => {
   };
 
   const validateEmail = email => {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
 
@@ -140,6 +141,7 @@ const RegisterScreen = () => {
           <Button onPress={handleSubmit} label="Registrar" />
         </View>
       </View>
+      <Toasts />
     </ScrollView>
   );
 };
