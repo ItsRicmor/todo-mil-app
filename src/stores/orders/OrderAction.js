@@ -10,15 +10,12 @@ export default class OrderAction {
 
   static getOrders(id) {
     return async (dispatch, getState) => {
-      const response = await ActionUtility.createThunkEffect(
+      await ActionUtility.createThunkEffect(
         dispatch,
         OrderAction.REQUEST_ORDER,
         OrderEffect.requestOrders,
         id,
       );
-      if (!(response instanceof HttpErrorResponseModel)) {
-        dispatch(ToastsAction.add('Se ha generado un pedido', ToastStatusEnum.Success));
-      }
     };
   }
 
@@ -47,7 +44,7 @@ export default class OrderAction {
         order,
       );
       if (!(response instanceof HttpErrorResponseModel)) {
-        callback();
+        dispatch(ToastsAction.add('Se ha generado un pedido', ToastStatusEnum.Success));
       }
     };
   }
