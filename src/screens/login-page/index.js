@@ -15,6 +15,7 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   const authenticated = useSelector(state => selectAuthenticated(state));
   const [state, setState] = useState({ username: '', password: '' });
+  const [error, updateError] = useState(false);
 
   const handleChange = name => value => {
     setState({
@@ -31,6 +32,11 @@ const LoginScreen = () => {
 
   const handleSubmit = () => {
     const { username, password } = state;
+
+    if (username.trim() === '' || password.trim() === '') {
+      updateError(true);
+      return;
+    }
     if (!!username && !!password) {
       dispatch(AuthAction.requestLogin(username, password));
     }
@@ -53,6 +59,7 @@ const LoginScreen = () => {
           onChangeText={handleChange('password')}
           placeholder="Contraseña"
         />
+        {error && <Text style={styles.error}>Por favor llenar todos los campos</Text>}
         <Button color="cyan" label="Ingresar" onPress={handleSubmit} />
         <Text style={styles.text} onPress={() => navigation.navigate(RouteEnum.Register)}>
           Registrarse
@@ -93,6 +100,13 @@ const styles = StyleSheet.create({
     marginTop: 2,
     fontWeight: 'bold',
     fontSize: 15,
+  },
+  error: {
+    color: 'red',
+    fontSize: 15,
+    fontWeight: 'bold',
+    margin: 10,
+    textAlign: 'center',
   },
 });
 
