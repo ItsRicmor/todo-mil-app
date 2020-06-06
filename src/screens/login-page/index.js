@@ -25,6 +25,18 @@ const LoginScreen = () => {
   };
 
   useEffect(() => {
+    const verifyLogin = async () => {
+      if (await AuthService.loggedIn()) {
+        const { token, ...rest } = (await AuthService.getProfile()).user_data;
+        dispatch(AuthAction.changeAuth({ authenticated: true, ...rest }));
+      } else {
+        dispatch(AuthAction.changeAuth({ authenticated: false }));
+      }
+    };
+    verifyLogin();
+  }, [dispatch]);
+
+  useEffect(() => {
     if (authenticated) {
       navigation.navigate(RouteEnum.Home);
     }

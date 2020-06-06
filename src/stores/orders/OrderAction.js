@@ -34,4 +34,22 @@ export default class OrderAction {
       }
     };
   }
+  static REQUEST_ORDER_CREATE = 'OrderAction.REQUEST_ORDER_CREATE';
+  static REQUEST_ORDER_CREATE_FINISHED = 'OrderAction.REQUEST_ORDER_CREATE_FINISHED';
+
+  static createOrder(order, callback) {
+    return async (dispatch, getState) => {
+      const response = await ActionUtility.createThunkEffect(
+        dispatch,
+        OrderAction.REQUEST_ORDER_CREATE,
+        OrderEffect.requestCreateOrder,
+        order,
+      );
+      if (response instanceof HttpErrorResponseModel) {
+        callback(false);
+      } else {
+        callback(true);
+      }
+    };
+  }
 }

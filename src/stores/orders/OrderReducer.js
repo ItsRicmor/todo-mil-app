@@ -10,7 +10,11 @@ export default class OrderReducer extends BaseReducer {
 
   [OrderAction.REQUEST_ORDER_UPDATE_FINISHED](state, action) {
     const order = action.payload;
-
     return [order, ...state.filter(model => model.id !== order.id)];
+  }
+
+  [OrderAction.REQUEST_ORDER_CREATE_FINISHED](state, action) {
+    const order = action.payload;
+    return [order, ...state];
   }
 }
