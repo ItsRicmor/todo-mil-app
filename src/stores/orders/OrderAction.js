@@ -27,7 +27,7 @@ export default class OrderAction {
 
   static updateOrder(order) {
     return async (dispatch, getState) => {
-      const response = await ActionUtility.createThunkEffect(
+      await ActionUtility.createThunkEffect(
         dispatch,
         OrderAction.REQUEST_ORDER_UPDATE,
         OrderEffect.requestUpdateOrder,

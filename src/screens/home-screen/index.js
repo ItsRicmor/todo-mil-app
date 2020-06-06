@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Dimensions, StyleSheet } from 'react-native';
+import { View, ScrollView, Dimensions, StyleSheet, Text } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Content } from 'native-base';
 import { useSelector } from 'react-redux';
@@ -18,7 +18,7 @@ import Toasts from '../components/Toasts';
 const CrouselContainer = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const menus = useSelector((state) => state.menus);
+  const menus = useSelector(state => state.menus);
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [article, setArticle] = useState({});
@@ -48,11 +48,11 @@ const CrouselContainer = () => {
   }, [dispatch]);
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 50 }}>
+      <ScrollView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 0 }}>
         <Content>
           {menus.map((menu, i) => (
-            <View key={i} style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-              <Text style={styles.tittle}>{menu.name}</Text>
+            <View key={i} style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+              <Text style={styles.title}>Menu: {menu.name}</Text>
               <Carousel
                 layout="default"
                 data={menu.articles}
@@ -68,7 +68,7 @@ const CrouselContainer = () => {
                     visible={visible}
                   />
                 )}
-                onSnapToItem={(index) => setIndex(index)}
+                onSnapToItem={index => setIndex(index)}
               />
             </View>
           ))}
@@ -82,9 +82,9 @@ const CrouselContainer = () => {
 };
 
 const styles = StyleSheet.create({
-  tittle: {
+  title: {
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 20,
     marginTop: 50,
     fontWeight: 'bold',
   },
