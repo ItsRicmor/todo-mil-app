@@ -12,6 +12,7 @@ import AuthService from '../../services/AuthService';
 import StateEnum from '../../constants/StateEnum';
 import { useNavigation } from '@react-navigation/native';
 import RouteEnum from '../../constants/RouteEnum';
+import Footer from './components/Footer';
 
 const CrouselContainer = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const CrouselContainer = () => {
     dispatch(MenuAction.getMenus());
   }, [dispatch]);
   return (
-    <>
+    <View style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 50 }}>
         <Content>
           {menus.map((menu, i) => (
@@ -72,7 +73,8 @@ const CrouselContainer = () => {
         </Content>
         <View style={{ height: 100 }}></View>
       </ScrollView>
-    </>
+      <Footer />
+    </View>
   );
 };
 

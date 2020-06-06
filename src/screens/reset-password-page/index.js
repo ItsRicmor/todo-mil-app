@@ -43,7 +43,7 @@ const ResetPasswordScreen = () => {
       <Text style={styles.tittle}>Restablecer Contraseña</Text>
       <View style={styles.form}>
         {isReady ? (
-          <Text>Revise sú correo electronico</Text>
+          <Text style={styles.text}>Revise sú correo electrónico</Text>
         ) : (
           <>
             <InputText value={email} onChangeText={setEmail} placeholder="Email" name="email" />
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffff',
     alignItems: 'center',
+    textAlign: 'center',
     justifyContent: 'space-between',
   },
   form: {
@@ -78,11 +79,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   text: {
-    fontSize: 13,
+    fontSize: 25,
     textAlign: 'center',
-    color: '#5C45EE',
+    color: 'black',
     paddingVertical: 4,
-    marginTop: 2,
+    marginBottom: 100,
+    textAlign: 'center',
   },
   error: {
     color: 'red',
