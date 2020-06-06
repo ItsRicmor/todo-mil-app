@@ -16,9 +16,6 @@ import { useSelector } from 'react-redux';
 const { Navigator, Screen } = createStackNavigator();
 
 const AppNavigator = () => {
-  const state = useSelector(state => state);
-  console.log('State', state);
-
   return (
     <Navigator initialRouteName={RouteEnum.Login}>
       <Screen

@@ -25,7 +25,6 @@ const LoginScreen = () => {
   };
 
   useEffect(() => {
-    AuthService.logout();
     if (authenticated) {
       navigation.navigate(RouteEnum.Home);
     }
@@ -40,6 +39,7 @@ const LoginScreen = () => {
     }
     if (!!username && !!password) {
       dispatch(AuthAction.requestLogin(username, password));
+      setState({ username: '', password: '' });
     }
   };
 

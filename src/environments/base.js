@@ -11,7 +11,7 @@ export default function baseEnv(baseApi) {
     api: {
       orders: `${baseApi}/api/orders/:orderId`,
       categories: `${baseApi}/api/categories/:categoryId`,
-      menus: `${baseApi}/api/menus/:menuId`,
+      menus: `${baseApi}/api/menus/today`,
       articles: `${baseApi}/api/articles/:id`,
     },
     auth: {

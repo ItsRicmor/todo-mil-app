@@ -11,4 +11,8 @@ export default class AuthReducer extends BaseReducer {
   [AuthAction.AUTH_AUTHENTICATED](state, action) {
     return { ...action.payload };
   }
+
+  [AuthAction.AUTH_LOGOUT](state, action) {
+    return { ...this.initialState };
+  }
 }

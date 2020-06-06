@@ -61,12 +61,8 @@ const RegisterScreen = () => {
     }
 
     if (!!username && !!password && !!cellphone && !!email && !!lastName && !!name) {
-      console.log('REGISTRO');
       dispatch(AuthAction.requestRegister({ ...user, client }));
-    } else {
-      console.log('NO ENTRO');
     }
-    console.log(JSON.stringify({ ...user, client }));
   };
 
   const handleChangeUser = name => value => {

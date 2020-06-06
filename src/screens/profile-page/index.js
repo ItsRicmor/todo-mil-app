@@ -4,10 +4,18 @@ import { useNavigation } from '@react-navigation/native';
 import RouteEnum from '../../constants/RouteEnum';
 import Button from './components/Button';
 import Image from './components/Image';
+import AuthService from '../../services/AuthService';
+import { useDispatch } from 'react-redux';
+import AuthAction from '../../stores/auth/AuthAction';
 
 const Profile = () => {
   const navigation = useNavigation();
-
+  const dispatch = useDispatch();
+  const onLogout = async () => {
+    await AuthService.logout();
+    dispatch(AuthAction.logout());
+    navigation.navigate(RouteEnum.Login);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}></View>
@@ -18,7 +26,7 @@ const Profile = () => {
           <Text style={styles.info}>Este es su perfil de usuario</Text>
 
           <Button label="Ver historial" onPress={() => navigation.navigate(RouteEnum.Records)} />
-          <Button label="Desconectarse" />
+          <Button label="Desconectarse" onPress={onLogout} />
         </View>
       </View>
     </View>
