@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getHourByFoodTime } from '../../../utils';
@@ -10,15 +11,16 @@ import AuthService from '../../../services/AuthService';
 const InProgress = () => {
   const dispatch = useDispatch();
   const orders = useSelector(selectOrdersInProgress);
-
-  useEffect(() => {
-    const requestOrders = async () => {
-      const { token, ...rest } = (await AuthService.getProfile()).user_data;
-      const { client } = rest;
-      dispatch(OrderAction.getOrders(client.id));
-    };
-    requestOrders();
-  }, [dispatch]);
+  useFocusEffect(
+    useCallback(() => {
+      const requestOrders = async () => {
+        const { token, ...rest } = (await AuthService.getProfile()).user_data;
+        const { client } = rest;
+        dispatch(OrderAction.getOrders(client.id));
+      };
+      requestOrders();
+    }, [dispatch]),
+  );
 
   return (
     <ScrollView>

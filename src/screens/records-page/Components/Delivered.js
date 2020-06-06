@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHourByFoodTime } from '../../../utils';
 import { selectOrdersDelivered } from '../../../selectors/orders/OrderSelector';
@@ -10,14 +11,16 @@ const Delivered = () => {
   const dispatch = useDispatch();
   const orders = useSelector(selectOrdersDelivered);
 
-  useEffect(() => {
-    const requestOrders = async () => {
-      const { token, ...rest } = (await AuthService.getProfile()).user_data;
-      const { client } = rest;
-      dispatch(OrderAction.getOrders(client.id));
-    };
-    requestOrders();
-  }, [dispatch]);
+  useFocusEffect(
+    useCallback(() => {
+      const requestOrders = async () => {
+        const { token, ...rest } = (await AuthService.getProfile()).user_data;
+        const { client } = rest;
+        dispatch(OrderAction.getOrders(client.id));
+      };
+      requestOrders();
+    }, [dispatch]),
+  );
   alertItemName = item => {
     alert(item.name);
   };
