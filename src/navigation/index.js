@@ -36,7 +36,7 @@ const AppNavigator = () => {
               style={{ marginRight: 20, fontWeight: 'bold', fontSize: 20 }}
               onPress={() => navigation.navigate(RouteEnum.Profile)}
             >
-              Profile
+              Perfil
             </Text>
           ),
         })}
