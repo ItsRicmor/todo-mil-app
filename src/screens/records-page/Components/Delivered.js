@@ -1,52 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { getHourByFoodTime } from '../../../utils';
+import { selectOrdersDelivered } from '../../../selectors/orders/OrderSelector';
+import OrderAction from '../../../stores/orders/OrderAction';
+import AuthService from '../../../services/AuthService';
 
 const Delivered = () => {
-  const state = {
-    names: [
-      {
-        id: 1,
-        name: 'gallo pinto',
-        description: 'con huevos',
-        price: '1500',
-      },
-      {
-        id: 2,
-        name: 'bistec',
-        description: 'con carne asada',
-        price: '2500',
-      },
+  const dispatch = useDispatch();
+  const orders = useSelector(selectOrdersDelivered);
 
-      {
-        id: 5,
-        name: 'galletas',
-        description: 'con chispas de chocolate',
-        price: '1000',
-      },
-
-      {
-        id: 7,
-        name: 'tostadas',
-        description: 'con tortillas caceras',
-        price: '2000',
-      },
-    ],
-  };
+  useEffect(() => {
+    const requestOrders = async () => {
+      const { token, ...rest } = (await AuthService.getProfile()).user_data;
+      const { client } = rest;
+      dispatch(OrderAction.getOrders(client.id));
+    };
+    requestOrders();
+  }, [dispatch]);
   alertItemName = item => {
     alert(item.name);
   };
   return (
     <ScrollView>
       <View>
-        {state.names.map(item => (
+        {orders.map(item => (
           <TouchableOpacity
             key={item.id}
             style={styles.container}
             onPress={() => alertItemName(item)}
           >
-            <Text style={[styles.text, styles.title]}>{item.name}</Text>
-            <Text style={styles.text}>{item.description}</Text>
-            <Text style={styles.text}>{item.price}</Text>
+            <Text style={[styles.text, styles.title]}>Pedido: {item.article.name}</Text>
+            <Text style={styles.text}>
+              Entrega: {item.deliveryDay} a las {getHourByFoodTime(item.foodTime)}
+            </Text>
+            <Text style={styles.text}>Precio: {item.article.price}</Text>
           </TouchableOpacity>
         ))}
       </View>

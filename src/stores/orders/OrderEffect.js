@@ -3,8 +3,8 @@ import EffectUtility from '../../utils/EffectUtility';
 import OrderModel from '../../models/OrderModel';
 
 export default class TodoEffect {
-  static requestOrders = async () => {
-    const endpoint = environment.api.orders.replace(':orderId', '');
+  static requestOrders = async id => {
+    const endpoint = environment.api.orders.replace(':orderId', 'idClient?id=' + id);
     return await EffectUtility.getToModel(OrderModel, endpoint);
   };
   static requestUpdateOrder = async order => {

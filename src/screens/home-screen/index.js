@@ -6,19 +6,37 @@ import { Content } from 'native-base';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import MenuAction from '../../stores/menus/MenuAction';
+import OrderAction from '../../stores/orders/OrderAction';
 import ItemCard from './components/ItemCard';
+import AuthService from '../../services/AuthService';
+import StateEnum from '../../constants/StateEnum';
+import { useNavigation } from '@react-navigation/native';
+import RouteEnum from '../../constants/RouteEnum';
 
 const CrouselContainer = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const menus = useSelector(state => state.menus);
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [article, setArticle] = useState({});
+  const [menuSelected, setMenuSelected] = useState({});
 
-  const onOpenCard = article => {
-    setArticle(article);
+  const onOpenCard = (item, menu) => {
+    setArticle(item);
+    setMenuSelected(menu);
     setVisible(true);
   };
+
+  const onAcceptCard = async () => {
+    setVisible(false);
+    const { token, ...rest } = (await AuthService.getProfile()).user_data;
+    const { client } = rest;
+    const order = { article, client, foodTime: menuSelected.foodTime, state: StateEnum.TODO };
+    console.log('ORDER', order);
+    dispatch(OrderAction.createOrder(order, () => navigation.navigate(RouteEnum.Records)));
+  };
+
   const onCloseCard = () => {
     setArticle({});
     setVisible(false);
@@ -40,8 +58,10 @@ const CrouselContainer = () => {
                 renderItem={({ item }) => (
                   <ItemCard
                     item={item}
+                    menu={menu}
                     onOpen={onOpenCard}
                     onClose={onCloseCard}
+                    onAccept={onAcceptCard}
                     visible={visible}
                   />
                 )}

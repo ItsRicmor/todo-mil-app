@@ -6,12 +6,13 @@ export default class OrderAction {
   static REQUEST_ORDER = 'OrderAction.REQUEST_ORDER';
   static REQUEST_ORDER_FINISHED = 'OrderAction.REQUEST_ORDER_FINISHED';
 
-  static getOrders() {
+  static getOrders(id) {
     return async (dispatch, getState) => {
       await ActionUtility.createThunkEffect(
         dispatch,
         OrderAction.REQUEST_ORDER,
         OrderEffect.requestOrders,
+        id,
       );
     };
   }
@@ -19,7 +20,7 @@ export default class OrderAction {
   static REQUEST_ORDER_UPDATE = 'OrderAction.REQUEST_ORDER_UPDATE';
   static REQUEST_ORDER_UPDATE_FINISHED = 'OrderAction.REQUEST_ORDER_UPDATE_FINISHED';
 
-  static updateOrder(order, callback) {
+  static updateOrder(order) {
     return async (dispatch, getState) => {
       const response = await ActionUtility.createThunkEffect(
         dispatch,
@@ -27,11 +28,6 @@ export default class OrderAction {
         OrderEffect.requestUpdateOrder,
         order,
       );
-      if (response instanceof HttpErrorResponseModel) {
-        callback(false);
-      } else {
-        callback(true);
-      }
     };
   }
   static REQUEST_ORDER_CREATE = 'OrderAction.REQUEST_ORDER_CREATE';
@@ -45,10 +41,8 @@ export default class OrderAction {
         OrderEffect.requestCreateOrder,
         order,
       );
-      if (response instanceof HttpErrorResponseModel) {
-        callback(false);
-      } else {
-        callback(true);
+      if (!(response instanceof HttpErrorResponseModel)) {
+        callback();
       }
     };
   }

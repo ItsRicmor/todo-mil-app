@@ -1,35 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { getHourByFoodTime } from '../../../utils';
+import { selectOrdersInProgress } from '../../../selectors/orders/OrderSelector';
+import OrderAction from '../../../stores/orders/OrderAction';
+import AuthService from '../../../services/AuthService';
 
 const InProgress = () => {
-  const state = {
-    names: [
-      {
-        id: 3,
-        name: 'cena',
-        description: 'a la barbacoa',
-        price: '3000',
-      },
-      {
-        id: 4,
-        name: 'helado',
-        description: 'con chispas de chocolate',
-        price: '1000',
-      },
-    ],
-  };
+  const dispatch = useDispatch();
+  const orders = useSelector(selectOrdersInProgress);
+
+  useEffect(() => {
+    const requestOrders = async () => {
+      const { token, ...rest } = (await AuthService.getProfile()).user_data;
+      const { client } = rest;
+      dispatch(OrderAction.getOrders(client.id));
+    };
+    requestOrders();
+  }, [dispatch]);
+
   return (
     <ScrollView>
       <View>
-        {state.names.map(item => (
+        {orders.map(item => (
           <TouchableOpacity
             key={item.id}
             style={styles.container}
             onPress={() => alertItemName(item)}
           >
-            <Text style={[styles.text, styles.title]}>{item.name}</Text>
-            <Text style={styles.text}>{item.description}</Text>
-            <Text style={styles.text}>{item.price}</Text>
+            <Text style={[styles.text, styles.title]}>Pedido: {item.article.name}</Text>
+            <Text style={styles.text}>
+              Entrega: {item.deliveryDay} a las {getHourByFoodTime(item.foodTime)}
+            </Text>
+            <Text style={styles.text}>Precio: {item.article.price}</Text>
           </TouchableOpacity>
         ))}
       </View>

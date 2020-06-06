@@ -1,38 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { getHourByFoodTime } from '../../../utils';
+import { selectOrdersDone } from '../../../selectors/orders/OrderSelector';
+import OrderAction from '../../../stores/orders/OrderAction';
+import AuthService from '../../../services/AuthService';
 
 const Finished = () => {
-  const state = {
-    names: [
-      {
-        id: 6,
-        name: 'Jugo verde',
-        description: 'con brocoli',
-        price: '1500',
-      },
-      {
-        id: 7,
-        name: 'tostadas',
-        description: 'con tortillas caceras',
-        price: '2000',
-      },
-    ],
-  };
+  const dispatch = useDispatch();
+  const orders = useSelector(selectOrdersDone);
+
+  useEffect(() => {
+    const requestOrders = async () => {
+      const { token, ...rest } = (await AuthService.getProfile()).user_data;
+      const { client } = rest;
+      dispatch(OrderAction.getOrders(client.id));
+    };
+    requestOrders();
+  }, [dispatch]);
   alertItemName = item => {
     alert(item.name);
   };
   return (
     <ScrollView>
       <View>
-        {state.names.map(item => (
+        {orders.map(item => (
           <TouchableOpacity
             key={item.id}
             style={styles.container}
             onPress={() => alertItemName(item)}
           >
-            <Text style={[styles.text, styles.title]}>{item.name}</Text>
-            <Text style={styles.text}>{item.description}</Text>
-            <Text style={styles.text}>{item.price}</Text>
+            <Text style={[styles.text, styles.title]}>Pedido: {item.article.name}</Text>
+            <Text style={styles.text}>
+              Entrega: {item.deliveryDay} a las {getHourByFoodTime(item.foodTime)}
+            </Text>
+            <Text style={styles.text}>Precio: {item.article.price}</Text>
           </TouchableOpacity>
         ))}
       </View>

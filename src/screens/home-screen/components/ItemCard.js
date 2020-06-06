@@ -4,7 +4,7 @@ import { Image } from 'react-native';
 import { Card, CardItem, Text, Left, Body, Right, Button, Icon } from 'native-base';
 import Dialog from './Dialog';
 
-const ItemCard = ({ item, onOpen, onClose, visible }) => {
+const ItemCard = ({ item, menu, onOpen, onClose, onAccept, visible }) => {
   return (
     <>
       <Card>
@@ -23,14 +23,14 @@ const ItemCard = ({ item, onOpen, onClose, visible }) => {
         </CardItem>
         <CardItem>
           <Right>
-            <Button iconRight onPress={() => onOpen(item)} light>
+            <Button iconRight onPress={() => onOpen(item, menu)} light>
               <Text>Pedir Plato</Text>
               <Icon name="arrow-forward" />
             </Button>
           </Right>
         </CardItem>
       </Card>
-      <Dialog onClose={onClose} visible={visible} />
+      <Dialog onClose={onClose} visible={visible} onAccept={onAccept} />
     </>
   );
 };

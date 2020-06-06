@@ -1,9 +1,27 @@
 import { createSelector } from 'reselect';
+import StateEnum from '../../constants/StateEnum';
 
-export class OrderSelector {
-  static selectOrder(orders) {
-    return orders;
+class OrderSelector {
+  static selectOrderInProgress(orders = []) {
+    return orders.filter(o => o.state === StateEnum.TODO);
+  }
+  static selectOrderDone(orders = []) {
+    return orders.filter(o => o.state === StateEnum.DONE);
+  }
+  static selectOrderInDelivered(orders = []) {
+    return orders.filter(o => o.state === StateEnum.DELIVERED);
   }
 }
 
-export const selectOrders = createSelector(state => state.orders, OrderSelector.selectOrder);
+export const selectOrdersInProgress = createSelector(
+  state => state.orders,
+  OrderSelector.selectOrderInProgress,
+);
+export const selectOrdersDone = createSelector(
+  state => state.orders,
+  OrderSelector.selectOrderDone,
+);
+export const selectOrdersDelivered = createSelector(
+  state => state.orders,
+  OrderSelector.selectOrderInDelivered,
+);
