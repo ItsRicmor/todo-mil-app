@@ -39,6 +39,7 @@ const LoginScreen = () => {
     }
     if (!!username && !!password) {
       dispatch(AuthAction.requestLogin(username, password));
+      setState({ username: '', password: '' });
     }
   };
 

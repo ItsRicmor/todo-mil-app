@@ -65,4 +65,9 @@ export default class AuthAction {
   static changeAuth(auth) {
     return ActionUtility.createAction(AuthAction.AUTH_AUTHENTICATED, { ...auth });
   }
+  static AUTH_LOGOUT = 'AuthAction.AUTH_LOGOUT';
+
+  static logout() {
+    return ActionUtility.createAction(AuthAction.AUTH_LOGOUT, {});
+  }
 }
