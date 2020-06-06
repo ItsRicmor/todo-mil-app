@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Dimensions } from 'react-native';
+import { View, ScrollView, Dimensions, StyleSheet } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Content } from 'native-base';
 import { useSelector } from 'react-redux';
@@ -18,7 +18,7 @@ import Toasts from '../components/Toasts';
 const CrouselContainer = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const menus = useSelector(state => state.menus);
+  const menus = useSelector((state) => state.menus);
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [article, setArticle] = useState({});
@@ -52,6 +52,7 @@ const CrouselContainer = () => {
         <Content>
           {menus.map((menu, i) => (
             <View key={i} style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+              <Text style={styles.tittle}>{menu.name}</Text>
               <Carousel
                 layout="default"
                 data={menu.articles}
@@ -67,7 +68,7 @@ const CrouselContainer = () => {
                     visible={visible}
                   />
                 )}
-                onSnapToItem={index => setIndex(index)}
+                onSnapToItem={(index) => setIndex(index)}
               />
             </View>
           ))}
@@ -80,4 +81,12 @@ const CrouselContainer = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  tittle: {
+    textAlign: 'center',
+    fontSize: 25,
+    marginTop: 50,
+    fontWeight: 'bold',
+  },
+});
 export default CrouselContainer;

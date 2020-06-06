@@ -53,7 +53,7 @@ const AppNavigator = () => {
         options={{ title: 'Todo Mil' }}
       />
       <Screen name={RouteEnum.Profile} component={Profile} options={{ title: 'Perfil' }} />
-      <Screen name={RouteEnum.Records} component={Records} options={{ title: 'Requests' }} />
+      <Screen name={RouteEnum.Records} component={Records} options={{ title: 'Historial' }} />
     </Navigator>
   );
 };
