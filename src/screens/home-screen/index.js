@@ -1,78 +1,39 @@
-import React, { Component } from 'react';
-import { View, SafeAreaView, Image, Dimensions } from 'react-native';
+/* eslint-disable react/jsx-key */
+import React, { useEffect, useState } from 'react';
+import { View, ScrollView, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { Card, CardItem, Text, Left, Body, Right, Button, Icon } from 'native-base';
+import { Content } from 'native-base';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import MenuAction from '../../stores/menus/MenuAction';
+import ItemCard from './components/ItemCard';
 
-export default class MyCarousel extends Component {
-  state = {
-    activeIndex: 0,
-    carouselItems: [
-      {
-        title: 'Item 1',
-        text: 'Text 1',
-      },
-      {
-        title: 'Item 2',
-        text: 'Text 2',
-      },
-      {
-        title: 'Item 3',
-        text: 'Text 3',
-      },
-      {
-        title: 'Item 4',
-        text: 'Text 4',
-      },
-      {
-        title: 'Item 5',
-        text: 'Text 5',
-      },
-    ],
-  };
+const CrouselContainer = () => {
+  const dispatch = useDispatch();
+  const menus = useSelector(state => state.menus);
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    dispatch(MenuAction.getMenus());
+  }, [dispatch]);
+  return (
+    <ScrollView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 50 }}>
+      <Content>
+        {menus.map((menu, i) => (
+          <View key={i} style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+            <Carousel
+              layout="default"
+              data={menu.articles}
+              sliderWidth={Dimensions.get('window').width - 10}
+              itemWidth={Dimensions.get('window').width - 100}
+              renderItem={ItemCard}
+              onSnapToItem={index => setIndex(index)}
+            />
+          </View>
+        ))}
+      </Content>
+      <View style={{ height: 100 }}></View>
+    </ScrollView>
+  );
+};
 
-  _renderItem({ item, index }) {
-    return (
-      <Card>
-        <CardItem>
-          <Left>
-            <Body>
-              <Text>{item.title} </Text>
-            </Body>
-          </Left>
-        </CardItem>
-        <CardItem cardBody>
-          <Image
-            source={require('../../../assets/comida.png')}
-            style={{ flex: 1, resizeMode: 'contain', width: null, height: 200 }}
-          />
-        </CardItem>
-        <CardItem>
-          <Right>
-            <Button iconRight light>
-              <Text>Pedir Plato</Text>
-              <Icon name="arrow-forward" />
-            </Button>
-          </Right>
-        </CardItem>
-      </Card>
-    );
-  }
-
-  render() {
-    return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 50 }}>
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-          <Carousel
-            layout="default"
-            ref={ref => (this.carousel = ref)}
-            data={this.state.carouselItems}
-            sliderWidth={Dimensions.get('window').width - 10}
-            itemWidth={Dimensions.get('window').width - 100}
-            renderItem={this._renderItem}
-            onSnapToItem={index => this.setState({ activeIndex: index })}
-          />
-        </View>
-      </SafeAreaView>
-    );
-  }
-}
+export default CrouselContainer;

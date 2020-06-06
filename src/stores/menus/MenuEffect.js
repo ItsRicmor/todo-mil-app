@@ -5,7 +5,7 @@ import HttpResponseModel from '../../models/HttpErrorResponseModel';
 
 export default class MenuEffect {
   static requestMenus = async () => {
-    const endpoint = environment.api.menus.replace(':menuId', '');
+    const endpoint = environment.api.menus;
     return await EffectUtility.getToModel(MenuModel, endpoint);
   };
   static requestUpdateMenu = async menu => {

@@ -24,7 +24,6 @@ const LoginScreen = () => {
   };
 
   useEffect(() => {
-    AuthService.logout();
     if (authenticated) {
       navigation.navigate(RouteEnum.Home);
     }

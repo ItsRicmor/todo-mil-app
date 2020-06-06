@@ -80,7 +80,6 @@ export default class HttpUtility {
       }
 
       const [axiosResponse] = await Promise.all([axios(axiosRequestConfig), HttpUtility._delay()]);
-      console.log(axiosResponse);
       const {
         status,
         data: { data, ok },
