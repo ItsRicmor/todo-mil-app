@@ -7,6 +7,7 @@ import { getHourByFoodTime } from '../../../utils';
 import { selectOrdersInProgress } from '../../../selectors/orders/OrderSelector';
 import OrderAction from '../../../stores/orders/OrderAction';
 import AuthService from '../../../services/AuthService';
+import Toasts from '../../components/Toasts';
 
 const InProgress = () => {
   const dispatch = useDispatch();
@@ -23,23 +24,22 @@ const InProgress = () => {
   );
 
   return (
-    <ScrollView>
-      <View>
-        {orders.map(item => (
-          <TouchableOpacity
-            key={item.id}
-            style={styles.container}
-            onPress={() => alertItemName(item)}
-          >
-            <Text style={[styles.text, styles.title]}>Pedido: {item.article.name}</Text>
-            <Text style={styles.text}>
-              Entrega: {item.deliveryDay} a las {getHourByFoodTime(item.foodTime)}
-            </Text>
-            <Text style={styles.text}>Precio: {item.article.price}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </ScrollView>
+    <>
+      <ScrollView>
+        <View>
+          {orders.map(item => (
+            <TouchableOpacity key={item.id} style={styles.container}>
+              <Text style={[styles.text, styles.title]}>Pedido: {item.article.name}</Text>
+              <Text style={styles.text}>
+                Entrega: {item.deliveryDay} a las {getHourByFoodTime(item.foodTime)}
+              </Text>
+              <Text style={styles.text}>Precio: {item.article.price}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+      <Toasts />
+    </>
   );
 };
 export default InProgress;

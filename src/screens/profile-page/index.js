@@ -7,6 +7,7 @@ import Image from './components/Image';
 import AuthService from '../../services/AuthService';
 import { useDispatch } from 'react-redux';
 import AuthAction from '../../stores/auth/AuthAction';
+import Toasts from '../components/Toasts';
 
 const Profile = () => {
   const navigation = useNavigation();
@@ -43,6 +44,7 @@ const Profile = () => {
           </View>
         </View>
       </View>
+      <Toasts />
     </View>
   );
 };

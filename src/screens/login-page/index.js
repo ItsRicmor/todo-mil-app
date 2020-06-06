@@ -9,6 +9,7 @@ import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
 
 import { useSelector, useDispatch } from 'react-redux';
 import AuthService from '../../services/AuthService';
+import Toasts from '../components/Toasts';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -81,6 +82,7 @@ const LoginScreen = () => {
           ¿Olvidaste Contraseña?
         </Text>
       </View>
+      <Toasts />
     </View>
   );
 };

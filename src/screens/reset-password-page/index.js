@@ -6,6 +6,7 @@ import InputText from './components/InputText';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthAction from '../../stores/auth/AuthAction';
 import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
+import Toasts from '../components/Toasts';
 
 const ResetPasswordScreen = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const ResetPasswordScreen = () => {
   };
 
   const validateEmail = email => {
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
 
@@ -55,6 +56,7 @@ const ResetPasswordScreen = () => {
           </>
         )}
       </View>
+      <Toasts />
     </View>
   );
 };

@@ -13,6 +13,7 @@ import StateEnum from '../../constants/StateEnum';
 import { useNavigation } from '@react-navigation/native';
 import RouteEnum from '../../constants/RouteEnum';
 import Footer from './components/Footer';
+import Toasts from '../components/Toasts';
 
 const CrouselContainer = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ const CrouselContainer = () => {
         <View style={{ height: 100 }}></View>
       </ScrollView>
       <Footer />
+      <Toasts />
     </View>
   );
 };
