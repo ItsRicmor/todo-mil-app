@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react/display-name */
 import React from 'react';
-import { Button, Text } from 'native-base';
+import { Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import RouteEnum from '../constants/RouteEnum';
 import HomeScreen from '../screens/home-screen';
@@ -22,17 +22,22 @@ const AppNavigator = () => {
         name={RouteEnum.Home}
         component={HomeScreen}
         options={({ navigation }) => ({
-          Title: 'Todo Mil',
           headerLeft: null,
-          headerRight: () => (
-            <Button
-              onPress={() => navigation.navigate(RouteEnum.Profile)}
-              style={{ marginRight: 10 }}
-              small
-              light
+          headerTitle: () => (
+            <Text
+              style={{ fontWeight: 'bold', fontSize: 20 }}
+              onPress={() => navigation.navigate(RouteEnum.Home)}
             >
-              <Text>Profile</Text>
-            </Button>
+              Menu Principal
+            </Text>
+          ),
+          headerRight: () => (
+            <Text
+              style={{ marginRight: 20, fontWeight: 'bold', fontSize: 20 }}
+              onPress={() => navigation.navigate(RouteEnum.Profile)}
+            >
+              Profile
+            </Text>
           ),
         })}
       />
