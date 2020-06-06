@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, SafeAreaView, Image, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Card, CardItem, Text, Left, Body, Right, Button, Icon } from 'native-base';
+import Footer from './components/Footer';
 
 export default class MyCarousel extends Component {
   state = {
@@ -60,19 +61,22 @@ export default class MyCarousel extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 50 }}>
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-          <Carousel
-            layout="default"
-            ref={ref => (this.carousel = ref)}
-            data={this.state.carouselItems}
-            sliderWidth={Dimensions.get('window').width - 10}
-            itemWidth={Dimensions.get('window').width - 100}
-            renderItem={this._renderItem}
-            onSnapToItem={index => this.setState({ activeIndex: index })}
-          />
-        </View>
-      </SafeAreaView>
+      <View style={{ flex: 1, backgroundColor: 'cyan' }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 50 }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+            <Carousel
+              layout="default"
+              ref={ref => (this.carousel = ref)}
+              data={this.state.carouselItems}
+              sliderWidth={Dimensions.get('window').width - 10}
+              itemWidth={Dimensions.get('window').width - 100}
+              renderItem={this._renderItem}
+              onSnapToItem={index => this.setState({ activeIndex: index })}
+            />
+          </View>
+        </SafeAreaView>
+        <Footer />
+      </View>
     );
   }
 }
