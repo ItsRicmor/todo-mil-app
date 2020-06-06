@@ -14,12 +14,29 @@ const ResetPasswordScreen = () => {
   const isRequesting = useSelector(state =>
     selectRequesting(state, [AuthAction.REQUEST_AUTH_FORGOT_PASSWORD]),
   );
+  const [errorEmail, updateErrorEmail] = useState(false);
+  const [error, updateError] = useState(false);
 
   const handleSubmit = async () => {
+    if (email.trim() === '') {
+      updateError(true);
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      updateErrorEmail(true);
+      console.log('AHHHHHHHH');
+      return;
+    }
     if (!!email) {
       dispatch(AuthAction.requestForgotPassword(email));
       setIsReady(true);
     }
+  };
+
+  const validateEmail = email => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
   };
 
   return (
@@ -31,6 +48,8 @@ const ResetPasswordScreen = () => {
         ) : (
           <>
             <InputText value={email} onChangeText={setEmail} placeholder="Email" name="email" />
+            {error ? <Text style={styles.error}>Por favor llenar todos los campos</Text> : null}
+            {errorEmail ? <Text style={styles.error}>Debe ser un correo valido</Text> : null}
             <Button label="Restablecer" onPress={handleSubmit} />
           </>
         )}
@@ -63,6 +82,13 @@ const styles = StyleSheet.create({
     color: '#5C45EE',
     paddingVertical: 4,
     marginTop: 2,
+  },
+  error: {
+    color: 'red',
+    fontSize: 15,
+    fontWeight: 'bold',
+    margin: 10,
+    textAlign: 'center',
   },
 });
 

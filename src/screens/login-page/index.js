@@ -105,7 +105,9 @@ const styles = StyleSheet.create({
   error: {
     color: 'red',
     fontSize: 15,
+    fontWeight: 'bold',
     margin: 10,
+    textAlign: 'center',
   },
 });
 

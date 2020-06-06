@@ -26,6 +26,9 @@ const RegisterScreen = () => {
     lastName: '',
     name: '',
   });
+  const [error, updateError] = useState(false);
+  const [errorEmail, updateErrorEmail] = useState(false);
+  const [errorNumber, updateErrorNumber] = useState(false);
 
   useEffect(() => {
     if (authenticated) {
@@ -33,9 +36,29 @@ const RegisterScreen = () => {
     }
   }, [navigation, authenticated]);
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     const { cellphone, email, lastName, name } = client;
     const { password, username } = user;
+    if (
+      username.trim() === '' ||
+      password.trim() === '' ||
+      cellphone.trim() === '' ||
+      email.trim === '' ||
+      lastName.trim() === '' ||
+      name.trim() === ''
+    ) {
+      updateError(true);
+      return;
+    }
+    if (!validateEmail(email)) {
+      updateErrorEmail(true);
+      return;
+    }
+    if (isNaN(cellphone)) {
+      updateErrorNumber(true);
+    }
+
     if (!!username && !!password && !!cellphone && !!email && !!lastName && !!name) {
       console.log('REGISTRO');
       dispatch(AuthAction.requestRegister({ ...user, client }));
@@ -56,6 +79,11 @@ const RegisterScreen = () => {
       ...client,
       [name]: value,
     });
+  };
+
+  const validateEmail = email => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
   };
 
   const { cellphone, email, lastName, name, clientType } = client;
@@ -105,6 +133,11 @@ const RegisterScreen = () => {
             onChangeText={handleChangeUser('password')}
             placeholder="Contraseña"
           />
+          {error ? <Text style={styles.error}>Por favor llenar todos los campos</Text> : null}
+          {errorEmail ? <Text style={styles.error}>Debe ser un correo valido</Text> : null}
+          {errorNumber ? (
+            <Text style={styles.error}>Numero de telefono debe ser numerico</Text>
+          ) : null}
           <Button onPress={handleSubmit} label="Registrar" />
         </View>
       </View>
@@ -131,6 +164,13 @@ const styles = StyleSheet.create({
     margin: 15,
     fontWeight: 'bold',
     marginBottom: 0,
+  },
+  error: {
+    color: 'red',
+    fontSize: 15,
+    fontWeight: 'bold',
+    margin: 10,
+    textAlign: 'center',
   },
 });
 
