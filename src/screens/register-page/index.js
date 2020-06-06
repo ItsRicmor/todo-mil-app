@@ -57,6 +57,7 @@ const RegisterScreen = () => {
     }
     if (isNaN(cellphone)) {
       updateErrorNumber(true);
+      return;
     }
 
     if (!!username && !!password && !!cellphone && !!email && !!lastName && !!name) {
@@ -133,11 +134,13 @@ const RegisterScreen = () => {
             onChangeText={handleChangeUser('password')}
             placeholder="Contraseña"
           />
-          {error ? <Text style={styles.error}>Por favor llenar todos los campos</Text> : null}
-          {errorEmail ? <Text style={styles.error}>Debe ser un correo valido</Text> : null}
-          {errorNumber ? (
-            <Text style={styles.error}>Numero de telefono debe ser numerico</Text>
-          ) : null}
+          {!errorEmail && error && (
+            <Text style={styles.error}>Por favor llenar todos los campos</Text>
+          )}
+          {!errorNumber && errorEmail && (
+            <Text style={styles.error}>Debe ser un correo valido</Text>
+          )}
+          {errorNumber && <Text style={styles.error}>Numero de telefono debe ser numerico</Text>}
           <Button onPress={handleSubmit} label="Registrar" />
         </View>
       </View>

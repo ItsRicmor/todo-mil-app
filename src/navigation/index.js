@@ -26,6 +26,7 @@ const AppNavigator = () => {
         component={HomeScreen}
         options={({ navigation }) => ({
           Title: 'Todo Mil',
+          headerLeft: null,
           headerRight: () => (
             <Button
               onPress={() => navigation.navigate(RouteEnum.Profile)}

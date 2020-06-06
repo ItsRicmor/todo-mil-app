@@ -60,7 +60,7 @@ const LoginScreen = () => {
           onChangeText={handleChange('password')}
           placeholder="Contraseña"
         />
-        {error ? <Text style={styles.error}>Por favor llenar todos los campos</Text> : null}
+        {error && <Text style={styles.error}>Por favor llenar todos los campos</Text>}
         <Button color="cyan" label="Ingresar" onPress={handleSubmit} />
         <Text style={styles.text} onPress={() => navigation.navigate(RouteEnum.Register)}>
           Registrarse

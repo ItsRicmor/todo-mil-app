@@ -25,7 +25,6 @@ const ResetPasswordScreen = () => {
 
     if (!validateEmail(email)) {
       updateErrorEmail(true);
-      console.log('AHHHHHHHH');
       return;
     }
     if (!!email) {
@@ -35,7 +34,7 @@ const ResetPasswordScreen = () => {
   };
 
   const validateEmail = email => {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
 
@@ -48,8 +47,10 @@ const ResetPasswordScreen = () => {
         ) : (
           <>
             <InputText value={email} onChangeText={setEmail} placeholder="Email" name="email" />
-            {error ? <Text style={styles.error}>Por favor llenar todos los campos</Text> : null}
-            {errorEmail ? <Text style={styles.error}>Debe ser un correo valido</Text> : null}
+            {!errorEmail && error && (
+              <Text style={styles.error}>Por favor llenar todos los campos</Text>
+            )}
+            {errorEmail && <Text style={styles.error}>Debe ser un correo valido</Text>}
             <Button label="Restablecer" onPress={handleSubmit} />
           </>
         )}
