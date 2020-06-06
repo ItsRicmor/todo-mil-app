@@ -28,7 +28,7 @@ const CrouselContainer = () => {
     dispatch(MenuAction.getMenus());
   }, [dispatch]);
   return (
-    <>
+    <View style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 50 }}>
         <Content>
           {menus.map((menu, i) => (
@@ -53,7 +53,8 @@ const CrouselContainer = () => {
         </Content>
         <View style={{ height: 100 }}></View>
       </ScrollView>
-    </>
+      <Footer />
+    </View>
   );
 };
 
