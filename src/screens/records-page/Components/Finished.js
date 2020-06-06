@@ -50,17 +50,18 @@ const styles = StyleSheet.create({
   container: {
     padding: 30,
     marginTop: 10,
-    backgroundColor: 'cyan',
+    backgroundColor: '#fff176',
     alignItems: 'center',
+    elevation: 10,
     marginRight: 50,
     marginLeft: 50,
-    textShadowRadius: 20,
-    borderRadius: 45,
+    textShadowRadius: 10,
+    borderRadius: 5,
     borderTopColor: 'black',
     borderWidth: 1,
   },
   text: {
-    color: '#4f603c',
+    color: '#000',
     fontWeight: 'bold',
   },
   title: {
