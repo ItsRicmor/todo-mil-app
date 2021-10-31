@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import rootStore from './src/stores/rootStore';
-import AppNavigator from './src/navigation';
+import { rootStore } from './src/stores/rootStore';
+import { AppNavigator } from './src/navigation';
 
 const initialState = {};
 const store = rootStore(initialState);

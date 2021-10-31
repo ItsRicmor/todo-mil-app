@@ -11,11 +11,10 @@ import ResetPasswordScreen from '../screens/reset-password-page';
 import RegisterScreen from '../screens/register-page';
 import Profile from '../screens/profile-page';
 import Records from '../screens/records-page';
-import { useSelector } from 'react-redux';
 
 const { Navigator, Screen } = createStackNavigator();
 
-const AppNavigator = () => {
+export const AppNavigator = () => {
   return (
     <Navigator initialRouteName={RouteEnum.Login}>
       <Screen
@@ -57,5 +56,3 @@ const AppNavigator = () => {
     </Navigator>
   );
 };
-
-export default AppNavigator;

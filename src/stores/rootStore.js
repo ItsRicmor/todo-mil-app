@@ -6,7 +6,7 @@ import { environment } from '../environments';
 import rootReducer from './rootReducer';
 import errorToastMiddleware from '../middlewares/errorToastMiddleware';
 
-export default function rootStore(initialState) {
+export const rootStore = initialState => {
   const middleware = [
     environment.isDevelopment ? reduxFreeze : null,
     thunk,
@@ -20,4 +20,4 @@ export default function rootStore(initialState) {
   );
 
   return store;
-}
+};
