@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { useNavigation } from '@react-navigation/native';
+import { Heading } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
@@ -44,16 +45,17 @@ const CrouselContainer = () => {
     dispatch(MenuAction.getMenus());
   }, [dispatch]);
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1, paddingTop: 0 }}>
+    <View style={{ flex: 1, height: '100%' }}>
+      <ScrollView style={{ flex: 1, paddingTop: 0, paddingBottom: 20, height: '100%' }}>
         {menus.map((menu, i) => (
           <View key={i} style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-            <Text style={styles.title}>Menu: {menu.name}</Text>
+            <Heading style={styles.title}>Menu: {menu.name}</Heading>
             <Carousel
               layout="default"
               data={menu.articles}
               sliderWidth={Dimensions.get('window').width - 10}
               itemWidth={Dimensions.get('window').width - 100}
+              layoutCardOffset={`18`}
               renderItem={({ item }) => (
                 <ItemCard
                   item={item}
@@ -78,9 +80,8 @@ const CrouselContainer = () => {
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
-    fontSize: 20,
-    marginTop: 50,
-    fontWeight: 'bold',
+    marginTop: 30,
+    marginBottom: 10,
   },
 });
 export default CrouselContainer;

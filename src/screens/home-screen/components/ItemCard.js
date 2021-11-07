@@ -1,16 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import {
+  ArrowForwardIcon,
   AspectRatio,
   Box,
-  Image,
+  Button,
   Center,
+  Heading,
+  Image,
   Stack,
   Text,
-  HStack,
-  Heading,
-  Button,
-  Icon,
 } from 'native-base';
 import React from 'react';
 import Dialog from './Dialog';
@@ -22,8 +21,9 @@ const ItemCard = ({ item, menu, onOpen, onClose, onAccept, visible }) => {
       <Box
         rounded="lg"
         overflow="hidden"
+        style={{ marginBottom: 15 }}
         width="72"
-        shadow={1}
+        shadow={7}
         _light={{ backgroundColor: 'gray.50' }}
         _dark={{ backgroundColor: 'gray.700' }}
       >
@@ -48,16 +48,19 @@ const ItemCard = ({ item, menu, onOpen, onClose, onAccept, visible }) => {
               {item.name}
             </Heading>
           </Stack>
-          <Text fontWeight="400">
-            Bengaluru (also called Bangalore) is the center of India's high-tech industry. The city
-            is also known for its parks and nightlife.
-          </Text>
-          <HStack alignItems="center" space={4} justifyContent="space-between">
-            <Button iconRight onPress={() => onOpen(item, menu)} light>
-              <Text>Pedir Plato</Text>
-              <Icon name="arrow-forward" />
+          <Text fontWeight="400">{item.description}</Text>
+          <Stack alignItems="center" justifyContent="space-between">
+            <Button
+              endIcon={<ArrowForwardIcon />}
+              onPress={() => onOpen(item, menu)}
+              small
+              colorScheme="success"
+            >
+              <Text fontWeight="400" style={{ fontSize: 15 }} color="white">
+                Pedir Plato
+              </Text>
             </Button>
-          </HStack>
+          </Stack>
         </Stack>
       </Box>
       <Dialog onClose={onClose} visible={visible} onAccept={onAccept} />
