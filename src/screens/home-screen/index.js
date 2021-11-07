@@ -1,19 +1,16 @@
 /* eslint-disable react/jsx-key */
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Dimensions, StyleSheet, Text } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { Content } from 'native-base';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import RouteEnum from '../../constants/RouteEnum';
+import StateEnum from '../../constants/StateEnum';
+import AuthService from '../../services/AuthService';
 import MenuAction from '../../stores/menus/MenuAction';
 import OrderAction from '../../stores/orders/OrderAction';
-import ItemCard from './components/ItemCard';
-import AuthService from '../../services/AuthService';
-import StateEnum from '../../constants/StateEnum';
-import { useNavigation } from '@react-navigation/native';
-import RouteEnum from '../../constants/RouteEnum';
-import Footer from './components/Footer';
 import Toasts from '../components/Toasts';
+import ItemCard from './components/ItemCard';
 
 const CrouselContainer = () => {
   const dispatch = useDispatch();
@@ -48,34 +45,31 @@ const CrouselContainer = () => {
   }, [dispatch]);
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1, backgroundColor: 'cyan', paddingTop: 0 }}>
-        <Content>
-          {menus.map((menu, i) => (
-            <View key={i} style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-              <Text style={styles.title}>Menu: {menu.name}</Text>
-              <Carousel
-                layout="default"
-                data={menu.articles}
-                sliderWidth={Dimensions.get('window').width - 10}
-                itemWidth={Dimensions.get('window').width - 100}
-                renderItem={({ item }) => (
-                  <ItemCard
-                    item={item}
-                    menu={menu}
-                    onOpen={onOpenCard}
-                    onClose={onCloseCard}
-                    onAccept={onAcceptCard}
-                    visible={visible}
-                  />
-                )}
-                onSnapToItem={index => setIndex(index)}
-              />
-            </View>
-          ))}
-        </Content>
+      <ScrollView style={{ flex: 1, paddingTop: 0 }}>
+        {menus.map((menu, i) => (
+          <View key={i} style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+            <Text style={styles.title}>Menu: {menu.name}</Text>
+            <Carousel
+              layout="default"
+              data={menu.articles}
+              sliderWidth={Dimensions.get('window').width - 10}
+              itemWidth={Dimensions.get('window').width - 100}
+              renderItem={({ item }) => (
+                <ItemCard
+                  item={item}
+                  menu={menu}
+                  onOpen={onOpenCard}
+                  onClose={onCloseCard}
+                  onAccept={onAcceptCard}
+                  visible={visible}
+                />
+              )}
+              onSnapToItem={index => setIndex(index)}
+            />
+          </View>
+        ))}
         <View style={{ height: 100 }}></View>
       </ScrollView>
-      <Footer />
       <Toasts />
     </View>
   );
