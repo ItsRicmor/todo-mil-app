@@ -135,9 +135,9 @@ const RegisterScreen = () => {
             <Text style={styles.error}>Por favor llenar todos los campos</Text>
           )}
           {!errorNumber && errorEmail && (
-            <Text style={styles.error}>Debe ser un correo valido</Text>
+            <Text style={styles.error}>Debe ser un correo válido</Text>
           )}
-          {errorNumber && <Text style={styles.error}>Numero de telefono debe ser numerico</Text>}
+          {errorNumber && <Text style={styles.error}>El número de teléfono debe ser numérico</Text>}
           <Button onPress={handleSubmit} label="Registrar" />
         </View>
       </View>
