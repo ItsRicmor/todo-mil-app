@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View, ScrollView } from 'react-native';
-import { Icon, Picker, Form } from 'native-base';
 import Button from './components/Button';
 import InputText from './components/InputText';
 import { useDispatch, useSelector } from 'react-redux';
@@ -104,22 +103,6 @@ const RegisterScreen = () => {
             placeholder="Telefono"
           />
           <InputText value={email} onChangeText={handleChangeClient('email')} placeholder="Email" />
-          <Form>
-            <Picker
-              mode="dropdown"
-              selectedValue={clientType}
-              onValueChange={itemValue => setClient({ ...client, clientType: itemValue })}
-              iosIcon={<Icon name="arrow-down" />}
-              placeholder="Select your SIM"
-              placeholderStyle={{ color: '#bfc6ea' }}
-              placeholderIconColor="#007aff"
-              style={{ width: undefined }}
-            >
-              <Picker.Item label="Estudiante" value="STUDENT" />
-              <Picker.Item label="Profesor" value="PROFESSOR" />
-              <Picker.Item label="Administrativo" value="ADMINISTRATIVE" />
-            </Picker>
-          </Form>
           <InputText
             value={username}
             onChangeText={handleChangeUser('username')}

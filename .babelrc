@@ -24,7 +24,8 @@
           "environment": "./src/environments/development"
         }
       }
-    ]
+    ],
+    "react-native-reanimated/plugin"
   ]
 }
 
