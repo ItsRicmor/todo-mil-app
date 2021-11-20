@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import React, { useCallback } from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHourByFoodTime } from '../../../utils';
 import { selectOrdersTodo } from '../../../selectors/orders/OrderSelector';
-import OrderAction from '../../../stores/orders/OrderAction';
 import AuthService from '../../../services/AuthService';
+import OrderAction from '../../../stores/orders/OrderAction';
+import { getHourByFoodTime } from '../../../utils';
 import Toasts from '../../components/Toasts';
 
 const Todo = () => {

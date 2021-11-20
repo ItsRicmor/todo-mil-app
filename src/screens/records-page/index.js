@@ -1,8 +1,8 @@
-import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Todo from './Components/Todo';
-import InProgress from './Components/InProcess';
+import React from 'react';
 import Finished from './Components/Finished';
+import InProgress from './Components/InProcess';
+import Todo from './Components/Todo';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator();
 const Index = () => {

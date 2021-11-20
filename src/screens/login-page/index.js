@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import RouteEnum from '../../constants/RouteEnum';
+import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
+import AuthService from '../../services/AuthService';
+import AuthAction from '../../stores/auth/AuthAction';
+import Toasts from '../components/Toasts';
 import Button from './components/Button';
 import InputText from './components/InputText';
-import RouteEnum from '../../constants/RouteEnum';
-import AuthAction from '../../stores/auth/AuthAction';
-import { useNavigation } from '@react-navigation/native';
-import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
-
-import { useSelector, useDispatch } from 'react-redux';
-import AuthService from '../../services/AuthService';
-import Toasts from '../components/Toasts';
 
 const LoginScreen = () => {
   const navigation = useNavigation();

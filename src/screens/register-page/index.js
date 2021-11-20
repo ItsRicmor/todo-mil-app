@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View, ScrollView } from 'react-native';
-import Button from './components/Button';
-import InputText from './components/InputText';
-import { useDispatch, useSelector } from 'react-redux';
-import AuthAction from '../../stores/auth/AuthAction';
 import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import RouteEnum from '../../constants/RouteEnum';
 import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
+import AuthAction from '../../stores/auth/AuthAction';
 import Toasts from '../components/Toasts';
+import Button from './components/Button';
+import InputText from './components/InputText';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
