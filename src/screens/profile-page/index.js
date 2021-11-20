@@ -1,13 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import RouteEnum from '../../constants/RouteEnum';
-import Button from './components/Button';
-import Image from './components/Image';
-import AuthService from '../../services/AuthService';
 import { useDispatch } from 'react-redux';
+import RouteEnum from '../../constants/RouteEnum';
+import AuthService from '../../services/AuthService';
 import AuthAction from '../../stores/auth/AuthAction';
 import Toasts from '../components/Toasts';
+import Button from './components/Button';
+import Image from './components/Image';
 
 const Profile = () => {
   const navigation = useNavigation();

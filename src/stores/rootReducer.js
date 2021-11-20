@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
-import RequestingReducer from './requesting/RequestingReducer';
+import ArticleReducer from './articles/ArticleReducer';
+import AuthReducer from './auth/AuthReducer';
+import CategoryReducer from './categories/CategoryReducer';
 import ErrorReducer from './error/ErrorReducer';
+import MenuReducer from './menus/MenuReducer';
+import OrderReducer from './orders/OrderReducer';
+import RequestingReducer from './requesting/RequestingReducer';
 import ToastsReducer from './toasts/ToastsReducer';
 import TodoReducer from './todos/TodoReducer';
-import AuthReducer from './auth/AuthReducer';
-import OrderReducer from './orders/OrderReducer';
-import CategoryReducer from './categories/CategoryReducer';
-import MenuReducer from './menus/MenuReducer';
-import ArticleReducer from './articles/ArticleReducer';
 
 export default function rootReducer() {
   const reducerMap = {

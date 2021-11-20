@@ -2,7 +2,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { Heading } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import RouteEnum from '../../constants/RouteEnum';
@@ -17,7 +17,6 @@ const CrouselContainer = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const menus = useSelector(state => state.menus);
-  const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [article, setArticle] = useState({});
   const [menuSelected, setMenuSelected] = useState({});
@@ -66,7 +65,6 @@ const CrouselContainer = () => {
                   visible={visible}
                 />
               )}
-              onSnapToItem={index => setIndex(index)}
             />
           </View>
         ))}
