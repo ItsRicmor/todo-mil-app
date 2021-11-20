@@ -42,7 +42,7 @@ const Profile = () => {
           <Text style={{ color: 'black' }}>{client.email}</Text>
         </View>
 
-        <View style={{ marginTop: 150 }}>
+        <View style={{ marginTop: 90 }}>
           <Button label="Pedidos" onPress={() => navigation.navigate(RouteEnum.Records)} />
           <Button label="Cerrar sesión" onPress={onLogout} />
         </View>

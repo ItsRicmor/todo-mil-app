@@ -7,8 +7,8 @@ import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
 import AuthService from '../../services/AuthService';
 import AuthAction from '../../stores/auth/AuthAction';
 import Toasts from '../components/Toasts';
-import Profile from '../profile-page';
-import Button from './components/button';
+import Profile from '../profile-page/components/Image';
+import Button from './components/Button';
 import InputText from './components/InputText';
 
 const LoginScreen = () => {
