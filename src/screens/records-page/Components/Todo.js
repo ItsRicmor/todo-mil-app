@@ -3,14 +3,14 @@ import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import { useFocusEffect } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHourByFoodTime } from '../../../utils';
-import { selectOrdersDelivered } from '../../../selectors/orders/OrderSelector';
+import { selectOrdersTodo } from '../../../selectors/orders/OrderSelector';
 import OrderAction from '../../../stores/orders/OrderAction';
 import AuthService from '../../../services/AuthService';
 import Toasts from '../../components/Toasts';
 
-const Delivered = () => {
+const Todo = () => {
   const dispatch = useDispatch();
-  const orders = useSelector(selectOrdersDelivered);
+  const orders = useSelector(selectOrdersTodo);
 
   useFocusEffect(
     useCallback(() => {
@@ -42,7 +42,7 @@ const Delivered = () => {
   );
 };
 
-export default Delivered;
+export default Todo;
 
 const styles = StyleSheet.create({
   container: {

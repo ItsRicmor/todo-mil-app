@@ -17,7 +17,6 @@ const CrouselContainer = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const menus = useSelector(state => state.menus);
-  const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [article, setArticle] = useState({});
   const [menuSelected, setMenuSelected] = useState({});
@@ -55,7 +54,7 @@ const CrouselContainer = () => {
               data={menu.articles}
               sliderWidth={Dimensions.get('window').width - 10}
               itemWidth={Dimensions.get('window').width - 100}
-              layoutCardOffset={`18`}
+              layoutCardOffset={18}
               renderItem={({ item }) => (
                 <ItemCard
                   item={item}
@@ -66,7 +65,6 @@ const CrouselContainer = () => {
                   visible={visible}
                 />
               )}
-              onSnapToItem={index => setIndex(index)}
             />
           </View>
         ))}
