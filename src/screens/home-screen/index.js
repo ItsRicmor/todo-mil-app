@@ -55,7 +55,7 @@ const CrouselContainer = () => {
               data={menu.articles}
               sliderWidth={Dimensions.get('window').width - 10}
               itemWidth={Dimensions.get('window').width - 100}
-              layoutCardOffset={`18`}
+              layoutCardOffset={18}
               renderItem={({ item }) => (
                 <ItemCard
                   item={item}

@@ -6,15 +6,13 @@ const Profile = () => {
 };
 const styles = StyleSheet.create({
   avatar: {
-    width: 130,
-    height: 130,
+    width: 100,
+    height: 100,
     borderRadius: 63,
     borderWidth: 4,
     borderColor: 'white',
     marginBottom: 10,
-    alignSelf: 'center',
-    position: 'absolute',
-    marginTop: 130,
+    marginTop: 100,
   },
 });
 export default Profile;

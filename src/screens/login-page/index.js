@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
-import Button from './components/Button';
+import Button from './components/button';
 import InputText from './components/InputText';
 import RouteEnum from '../../constants/RouteEnum';
 import AuthAction from '../../stores/auth/AuthAction';
 import { useNavigation } from '@react-navigation/native';
 import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
+import Profile from '../profile-page/components/Image';
 
 import { useSelector, useDispatch } from 'react-redux';
 import AuthService from '../../services/AuthService';
 import Toasts from '../components/Toasts';
+import { flex } from 'styled-system';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -60,8 +62,10 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.tittle}>Login</Text>
       <View style={styles.form}>
+        <Profile />
+        <Text style={styles.tittle}>Login</Text>
+        {error && <Text style={styles.error}>Por favor llenar todos los campos</Text>}
         <InputText
           value={username}
           onChangeText={handleChange('username')}
@@ -73,7 +77,6 @@ const LoginScreen = () => {
           onChangeText={handleChange('password')}
           placeholder="Contraseña"
         />
-        {error && <Text style={styles.error}>Por favor llenar todos los campos</Text>}
         <Button color="cyan" label="Ingresar" onPress={handleSubmit} />
         <Text style={styles.text} onPress={() => navigation.navigate(RouteEnum.Register)}>
           Registrarse
@@ -96,15 +99,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   form: {
-    flex: 8,
-    justifyContent: 'center',
-    width: '80%',
-    fontWeight: 'bold',
+    height: '100%',
+    width: '100%',
+    paddingLeft: 20,
+    paddingRight: 20,
+    display: 'flex',
+    alignItems: 'center',
   },
   tittle: {
     textAlign: 'center',
     fontSize: 25,
-    marginTop: 50,
+    marginTop: 10,
     fontWeight: 'bold',
   },
   text: {
