@@ -7,7 +7,6 @@ import ToastsAction from '../../stores/toasts/ToastsAction';
 
 const Toats = () => {
   const { items } = useSelector(state => state.toasts);
-  console.log(items);
   const dispatch = useDispatch();
   const onDismiss = id => () => {
     dispatch(ToastsAction.removeById(id));

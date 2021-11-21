@@ -21,7 +21,6 @@ const RegisterScreen = () => {
 
   const [client, setClient] = useState({
     cellphone: '',
-    clientType: 'STUDENT',
     email: '',
     lastName: '',
     name: '',
@@ -32,7 +31,10 @@ const RegisterScreen = () => {
 
   useEffect(() => {
     if (authenticated) {
-      navigation.navigate(RouteEnum.Home);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: RouteEnum.Home }],
+      });
     }
   }, [navigation, authenticated]);
 
@@ -100,7 +102,8 @@ const RegisterScreen = () => {
           <InputText
             value={cellphone}
             onChangeText={handleChangeClient('cellphone')}
-            placeholder="Telefono"
+            placeholder="Teléfono"
+            keyboardType="numeric"
           />
           <InputText value={email} onChangeText={handleChangeClient('email')} placeholder="Email" />
           <InputText

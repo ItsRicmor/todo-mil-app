@@ -39,7 +39,10 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (authenticated) {
-      navigation.navigate(RouteEnum.Home);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: RouteEnum.Home }],
+      });
     }
   }, [navigation, authenticated]);
 
@@ -63,7 +66,6 @@ const LoginScreen = () => {
       <View style={styles.form}>
         <Profile />
         <Text style={styles.tittle}>Login</Text>
-        {error && <Text style={styles.error}>Por favor llenar todos los campos</Text>}
         <InputText
           value={username}
           onChangeText={handleChange('username')}
@@ -75,6 +77,7 @@ const LoginScreen = () => {
           onChangeText={handleChange('password')}
           placeholder="Contraseña"
         />
+        {error && <Text style={styles.error}>Por favor llenar todos los campos</Text>}
         <Button color="cyan" label="Ingresar" onPress={handleSubmit} />
         <Text style={styles.text} onPress={() => navigation.navigate(RouteEnum.Register)}>
           Registrarse
