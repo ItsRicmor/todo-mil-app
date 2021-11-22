@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Snackbar } from 'react-native-paper';
-import ToastsAction from '../../stores/toasts/ToastsAction';
+import { useDispatch, useSelector } from 'react-redux';
 import ToastStatusEnum from '../../constants/ToastStatusEnum';
+import ToastsAction from '../../stores/toasts/ToastsAction';
 
 const Toats = () => {
   const { items } = useSelector(state => state.toasts);

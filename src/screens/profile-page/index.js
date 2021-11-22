@@ -1,13 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import RouteEnum from '../../constants/RouteEnum';
-import Button from './components/Button';
-import Image from './components/Image';
-import AuthService from '../../services/AuthService';
 import { useDispatch } from 'react-redux';
+import RouteEnum from '../../constants/RouteEnum';
+import AuthService from '../../services/AuthService';
 import AuthAction from '../../stores/auth/AuthAction';
 import Toasts from '../components/Toasts';
+import Button from './components/Button';
+import Image from './components/Image';
 
 const Profile = () => {
   const navigation = useNavigation();
@@ -30,18 +30,21 @@ const Profile = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}></View>
       <Image />
-      <View style={styles.body}>
-        <View style={styles.bodyContent}>
-          <Text style={styles.name}>{client.name + ' ' + client.lastName}</Text>
-          <View style={{ marginTop: 30 }}>
-            <Text style={styles.info}>Telefono: {client.cellphone}</Text>
-            <Text style={styles.info}>email: {client.email}</Text>
-            <View style={{ marginTop: 80 }}></View>
-            <Button label="Pedidos" onPress={() => navigation.navigate(RouteEnum.Records)} />
-            <Button label="Desconectarse" onPress={onLogout} />
-          </View>
+      <Text style={styles.name}>{client.name + ' ' + client.lastName}</Text>
+      <View>
+        <View style={styles.info}>
+          <Text style={{ fontWeight: 'bold', width: '35%' }}>Teléfono:</Text>
+          <Text>{client.cellphone}</Text>
+        </View>
+        <View style={styles.info}>
+          <Text style={{ fontWeight: 'bold', color: 'black', width: '35%' }}>Email:</Text>
+          <Text style={{ color: 'black' }}>{client.email}</Text>
+        </View>
+
+        <View style={{ marginTop: 90 }}>
+          <Button label="Pedidos" onPress={() => navigation.navigate(RouteEnum.Records)} />
+          <Button label="Cerrar sesión" onPress={onLogout} />
         </View>
       </View>
       <Toasts />
@@ -50,39 +53,28 @@ const Profile = () => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: 'cyan',
-    height: 200,
-  },
-  name: {
-    fontSize: 22,
-    color: '#FFFFFF',
-    fontWeight: '600',
-  },
-  body: {
-    marginTop: 40,
-  },
-  bodyContent: {
-    flex: 1,
+  container: {
+    display: 'flex',
     alignItems: 'center',
-    padding: 30,
   },
   name: {
     fontSize: 28,
     color: '#696969',
-    fontWeight: '600',
+    fontWeight: '700',
+    marginBottom: 30,
   },
   info: {
     fontSize: 16,
     color: 'black',
     marginTop: 10,
     marginBottom: 0,
-  },
-  description: {
-    fontSize: 16,
-    color: '#696969',
-    marginTop: 10,
-    textAlign: 'center',
+    fontWeight: 'bold',
+    paddingTop: 15,
+    paddingBottom: 5,
+    display: 'flex',
+    flexDirection: 'row',
+    borderBottomWidth: 1.2,
+    borderBottomColor: 'black',
   },
 });
 export default Profile;

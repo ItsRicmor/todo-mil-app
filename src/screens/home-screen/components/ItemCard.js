@@ -15,7 +15,6 @@ import React from 'react';
 import Dialog from './Dialog';
 
 const ItemCard = ({ item, menu, onOpen, onClose, onAccept, visible }) => {
-  console.log(item);
   return (
     <>
       <Box

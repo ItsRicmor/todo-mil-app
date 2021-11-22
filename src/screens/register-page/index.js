@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View, ScrollView } from 'react-native';
-import Button from './components/Button';
-import InputText from './components/InputText';
+import InputText from '../login-page/components/InputText';
 import { useDispatch, useSelector } from 'react-redux';
-import AuthAction from '../../stores/auth/AuthAction';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import RouteEnum from '../../constants/RouteEnum';
 import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
+import AuthAction from '../../stores/auth/AuthAction';
 import Toasts from '../components/Toasts';
+import Button from './components/Button';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
@@ -21,7 +21,6 @@ const RegisterScreen = () => {
 
   const [client, setClient] = useState({
     cellphone: '',
-    clientType: 'STUDENT',
     email: '',
     lastName: '',
     name: '',
@@ -32,7 +31,10 @@ const RegisterScreen = () => {
 
   useEffect(() => {
     if (authenticated) {
-      navigation.navigate(RouteEnum.Home);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: RouteEnum.Home }],
+      });
     }
   }, [navigation, authenticated]);
 
@@ -89,8 +91,8 @@ const RegisterScreen = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.title}>Registrarse</Text>
         <View style={styles.form}>
+          <Text style={styles.title}>Registrarse</Text>
           <InputText value={name} onChangeText={handleChangeClient('name')} placeholder="Nombre" />
           <InputText
             value={lastName}
@@ -100,7 +102,8 @@ const RegisterScreen = () => {
           <InputText
             value={cellphone}
             onChangeText={handleChangeClient('cellphone')}
-            placeholder="Telefono"
+            placeholder="Teléfono"
+            keyboardType="numeric"
           />
           <InputText value={email} onChangeText={handleChangeClient('email')} placeholder="Email" />
           <InputText
@@ -136,18 +139,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   form: {
-    flex: 1,
+    display: 'flex',
+    width: '100%',
     margin: 10,
     padding: 30,
     width: '90%',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 25,
     padding: 30,
-    margin: 15,
     fontWeight: 'bold',
-    marginBottom: 0,
   },
   error: {
     color: 'red',

@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
+import AuthAction from '../../stores/auth/AuthAction';
+import Toasts from '../components/Toasts';
 import Button from './components/Button';
 import InputText from './components/InputText';
-import { useDispatch, useSelector } from 'react-redux';
-import AuthAction from '../../stores/auth/AuthAction';
-import { selectRequesting } from '../../selectors/requesting/RequestingSelector';
-import Toasts from '../components/Toasts';
 
 const ResetPasswordScreen = () => {
   const dispatch = useDispatch();

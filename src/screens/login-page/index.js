@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import RouteEnum from '../../constants/RouteEnum';
+import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
+import AuthService from '../../services/AuthService';
+import AuthAction from '../../stores/auth/AuthAction';
+import Toasts from '../components/Toasts';
+import Profile from '../profile-page/components/Image';
 import Button from './components/Button';
 import InputText from './components/InputText';
-import RouteEnum from '../../constants/RouteEnum';
-import AuthAction from '../../stores/auth/AuthAction';
-import { useNavigation } from '@react-navigation/native';
-import { selectAuthenticated } from '../../selectors/auth/AuthSelector';
-
-import { useSelector, useDispatch } from 'react-redux';
-import AuthService from '../../services/AuthService';
-import Toasts from '../components/Toasts';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -39,7 +39,10 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (authenticated) {
-      navigation.navigate(RouteEnum.Home);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: RouteEnum.Home }],
+      });
     }
   }, [navigation, authenticated]);
 
@@ -60,8 +63,9 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.tittle}>Login</Text>
       <View style={styles.form}>
+        <Profile />
+        <Text style={styles.tittle}>Login</Text>
         <InputText
           value={username}
           onChangeText={handleChange('username')}
@@ -96,15 +100,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   form: {
-    flex: 8,
-    justifyContent: 'center',
-    width: '80%',
-    fontWeight: 'bold',
+    height: '100%',
+    width: '100%',
+    paddingLeft: 20,
+    paddingRight: 20,
+    display: 'flex',
+    alignItems: 'center',
   },
   tittle: {
     textAlign: 'center',
     fontSize: 25,
-    marginTop: 50,
+    marginTop: 10,
     fontWeight: 'bold',
   },
   text: {
