@@ -16,7 +16,7 @@ import ItemCard from './components/ItemCard';
 const CrouselContainer = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const menus = useSelector(state => state.menus);
+  const { menus } = useSelector(state => state);
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [article, setArticle] = useState({});
@@ -33,7 +33,6 @@ const CrouselContainer = () => {
     const { token, ...rest } = (await AuthService.getProfile()).user_data;
     const { client } = rest;
     const order = { article, client, foodTime: menuSelected.foodTime, state: StateEnum.TODO };
-    console.log('ORDER', order);
     dispatch(OrderAction.createOrder(order, () => navigation.navigate(RouteEnum.Records)));
   };
 
@@ -44,6 +43,7 @@ const CrouselContainer = () => {
   useEffect(() => {
     dispatch(MenuAction.getMenus());
   }, [dispatch]);
+  console.log('Menu', menus);
   return (
     <View style={{ flex: 1, height: '100%' }}>
       <ScrollView style={{ flex: 1, paddingTop: 0, paddingBottom: 20, height: '100%' }}>
