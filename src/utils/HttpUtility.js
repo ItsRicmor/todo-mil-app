@@ -148,7 +148,6 @@ export default class HttpUtility {
   }
 
   static _fillInErrorWithDefaults(error, request) {
-    console.log(error);
     const {
       raw: {
         data: { data },
