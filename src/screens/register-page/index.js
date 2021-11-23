@@ -89,7 +89,7 @@ const RegisterScreen = () => {
   const { password, username } = user;
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ height: '100%' }}>
       <View style={styles.container}>
         <View style={styles.form}>
           <Text style={styles.title}>Registrarse</Text>
@@ -104,6 +104,8 @@ const RegisterScreen = () => {
             onChangeText={handleChangeClient('cellphone')}
             placeholder="Teléfono"
             keyboardType="numeric"
+            maxLength={8}
+            minLength={8}
           />
           <InputText value={email} onChangeText={handleChangeClient('email')} placeholder="Email" />
           <InputText
@@ -135,21 +137,21 @@ const RegisterScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffff',
+    backgroundColor: 'white',
     alignItems: 'center',
   },
   form: {
     display: 'flex',
     width: '100%',
     margin: 10,
-    padding: 30,
+    paddingHorizontal: 30,
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
     fontSize: 25,
-    padding: 30,
+    padding: 15,
     fontWeight: 'bold',
   },
   error: {

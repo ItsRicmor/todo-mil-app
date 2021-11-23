@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#0275d8',
     marginBottom: 12,
-    marginTop: 50,
+    marginTop: 25,
     paddingVertical: 12,
     borderRadius: 4,
     borderWidth: StyleSheet.hairlineWidth,

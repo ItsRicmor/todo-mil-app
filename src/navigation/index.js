@@ -27,7 +27,7 @@ export const AppNavigator = () => {
               style={{ fontWeight: 'bold', fontSize: 20 }}
               onPress={() => navigation.navigate(RouteEnum.Home)}
             >
-              Menu Principal
+              Menús
             </Text>
           ),
           headerRight: () => (

@@ -5,7 +5,7 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 const Button = ({ label, ...props }) => {
   return (
     <TouchableOpacity {...props} style={styles.buttonContainer}>
-      <Text>{label}</Text>
+      <Text style={styles.labelButton}>{label}</Text>
     </TouchableOpacity>
   );
 };
@@ -18,9 +18,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: '100%',
     borderRadius: 10,
-    backgroundColor: 'cyan',
+    backgroundColor: '#2887DA',
+  },
+  labelButton: {
+    color: 'white',
+    fontSize: 16,
     fontWeight: 'bold',
-    color: 'black',
   },
 });
 export default Button;

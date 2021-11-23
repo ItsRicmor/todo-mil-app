@@ -34,12 +34,12 @@ const Profile = () => {
       <Text style={styles.name}>{client.name + ' ' + client.lastName}</Text>
       <View>
         <View style={styles.info}>
-          <Text style={{ fontWeight: 'bold', width: '35%' }}>Teléfono:</Text>
+          <Text style={styles.title}>Teléfono: </Text>
           <Text>{client.cellphone}</Text>
         </View>
         <View style={styles.info}>
-          <Text style={{ fontWeight: 'bold', color: 'black', width: '35%' }}>Email:</Text>
-          <Text style={{ color: 'black' }}>{client.email}</Text>
+          <Text style={styles.title}>Email: </Text>
+          <Text>{client.email}</Text>
         </View>
 
         <View style={{ marginTop: 90 }}>
@@ -64,17 +64,18 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   info: {
-    fontSize: 16,
-    color: 'black',
-    marginTop: 10,
-    marginBottom: 0,
-    fontWeight: 'bold',
-    paddingTop: 15,
-    paddingBottom: 5,
     display: 'flex',
     flexDirection: 'row',
-    borderBottomWidth: 1.2,
-    borderBottomColor: 'black',
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 0,
+    paddingTop: 15,
+    paddingBottom: 5,
+  },
+  title: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 export default Profile;

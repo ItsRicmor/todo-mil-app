@@ -1,6 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectOrdersTodo } from '../../../selectors/orders/OrderSelector';
 import AuthService from '../../../services/AuthService';
@@ -28,11 +28,11 @@ const Todo = () => {
       <ScrollView>
         <View>
           {orders.map(item => (
-            <TouchableOpacity key={item.id} style={styles.container}>
+            <View key={item.id} style={styles.container}>
               <Text style={[styles.text, styles.title]}>Producto: {item.article.name}</Text>
               <Text style={styles.text}>Categoría: {item.article.category.name}</Text>
               <Text style={styles.text}>Precio: {item.article.price}</Text>
-            </TouchableOpacity>
+            </View>
           ))}
         </View>
       </ScrollView>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 10,
     paddingBottom: 20,
-    marginTop: 10,
+    marginTop: 30,
     backgroundColor: 'white',
     elevation: 2,
     marginRight: 75,

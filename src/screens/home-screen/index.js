@@ -48,7 +48,7 @@ const CrouselContainer = () => {
       <ScrollView style={{ flex: 1, paddingTop: 0, paddingBottom: 20, height: '100%' }}>
         {menus.map((menu, i) => (
           <View key={i} style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-            <Heading style={styles.title}>Menu: {menu.name}</Heading>
+            <Heading style={styles.title}>{menu.name}</Heading>
             <Carousel
               layout="default"
               data={menu.articles}

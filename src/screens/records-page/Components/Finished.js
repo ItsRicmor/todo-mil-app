@@ -27,13 +27,10 @@ const Finished = () => {
       <ScrollView>
         <View>
           {orders.map(item => (
-            <TouchableOpacity key={item.id} style={styles.container}>
+            <View key={item.id} style={styles.container}>
               <Text style={[styles.text, styles.title]}>Pedido: {item.article.name}</Text>
-              <Text style={styles.text}>
-                Entrega: {item.deliveryDay} a las {getHourByFoodTime(item.foodTime)}
-              </Text>
               <Text style={styles.text}>Precio: {item.article.price}</Text>
-            </TouchableOpacity>
+            </View>
           ))}
         </View>
       </ScrollView>
@@ -45,26 +42,22 @@ export default Finished;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 30,
-    marginTop: 10,
-    backgroundColor: '#fff176',
-    alignItems: 'center',
-    elevation: 10,
-    marginRight: 50,
-    marginLeft: 50,
-    textShadowRadius: 10,
-    borderRadius: 5,
-    borderTopColor: 'black',
-    borderWidth: 1,
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 20,
+    marginTop: 30,
+    backgroundColor: 'white',
+    elevation: 2,
+    marginRight: 75,
+    marginLeft: 75,
+    borderRadius: 4,
   },
   text: {
-    color: '#000',
-    fontWeight: 'bold',
+    color: '#000000',
+    fontWeight: '700',
   },
   title: {
-    fontSize: 20,
-    marginBottom: 10,
-    textTransform: 'uppercase',
-    borderColor: '#afa19c',
+    fontSize: 18,
+    marginBottom: 5,
   },
 });
